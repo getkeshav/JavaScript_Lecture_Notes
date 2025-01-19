@@ -1,6 +1,6 @@
 "use strict"; //This is typed to treat all JS code in the file according to newer version
 
-//alert (3+3) //gives error, since we are using node.js currently and not browser
+//alert (3+3) //gives error, since we are using node.js currently and not browser- run this in browser console
 
 /*
 
@@ -29,6 +29,10 @@ II- NOn-Primitive Data types
 let x = 5
 console.log(typeof x)
 console.log(typeof "Pranaw")
+
+//or
+
+console.log(typeof (x))
 
 console.log(typeof null) //gives object as output; a drawback in the JS language
 console.log(typeof undefined) //gives undefined as output; undefined is a type of itself
