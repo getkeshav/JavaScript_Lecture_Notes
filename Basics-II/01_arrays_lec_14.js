@@ -1,6 +1,6 @@
-//Array - it is also an object. Array is a collection of different data-types.
+//? Array - it is also an object. Array is a collection of different data-types.
 
-//Array in JS is resizable. They can have different dat-types (members)
+//? Array in JS is resizable. They can have different dat-types (members)
 
 let arr = [5, true, undefined, "Pranaw", 26, false]
 

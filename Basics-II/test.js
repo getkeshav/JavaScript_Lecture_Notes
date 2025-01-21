@@ -1,1 +1,1 @@
-//Note: According to 
+console.log(5)
