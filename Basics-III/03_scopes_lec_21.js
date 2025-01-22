@@ -1,10 +1,6 @@
-//! Anything written between {} (curly braces) are block scope and outside that is global scope
+//! Anything written between {} (curly braces)- in if-else, function, loops etc are scope
 
-//! 'var' keyword is global and function scoped
-
-//! 'let' and 'const' keywords are block scoped and obviously function scoped
 {
-
 
 if (true) {
     let a = 5
