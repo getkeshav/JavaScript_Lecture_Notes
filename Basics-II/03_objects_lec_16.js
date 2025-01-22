@@ -1,10 +1,10 @@
 {
 
-//* Object Literals
+//* Object Literals -- Non-Singleton object 
 
 //? Object - Key-value pairs
 
-//* Object creation
+//* Object creation -- This is first way of creating objects
 const jsUser = {
 
     name : "Pranaw", //or "name" = "Pranaw" //! This (second way) is the actual process inside the system
