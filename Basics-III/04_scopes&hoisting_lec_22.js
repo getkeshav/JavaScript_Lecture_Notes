@@ -1,44 +1,44 @@
-// {
+{
 
-// //* Understanding scopes with nested function
+//* Understanding scopes with nested function
 
-// function one () {
-//     const username = "Pranaw"
+function one () {
+    const username = "Pranaw"
 
-//     function two() {
-//         const age = 18
-//         console.log(username); //! "username" is accessible inside, since it is inside the scope of one() function
-//     }
-//     console.log(age);  //! throws error!! "age" is not accessible, since we are outside the scope of age
+    function two() {
+        const age = 18
+        console.log(username); //! "username" is accessible inside, since it is inside the scope of one() function
+    }
+    console.log(age);  //! throws error!! "age" is not accessible, since we are outside the scope of age
 
-//     two()
-// }
+    two()
+}
 
-// one()
-
-
-// }
-
-// {
-
-// //* Understanding scopes with nested if-else
-
-// if (true) {
-//     const username = "Pranaw"
-
-//     if (username === 'Pranaw') {
-//         const website = "youtube.com"
-//         console.log(username + " "+ website)
-//     }
-
-//     console.log(website) //gives error (since website ka scope se bahar aa gye)
-
-// }
-
-// console.log(username) //gives error (since username ke scope se bahar aa gye)
+one()
 
 
-// }
+}
+
+{
+
+//* Understanding scopes with nested if-else
+
+if (true) {
+    const username = "Pranaw"
+
+    if (username === 'Pranaw') {
+        const website = "youtube.com"
+        console.log(username + " "+ website)
+    }
+
+    console.log(website) //gives error (since website ka scope se bahar aa gye)
+
+}
+
+console.log(username) //gives error (since username ke scope se bahar aa gye)
+
+
+}
 
 {
     //* Function expression
