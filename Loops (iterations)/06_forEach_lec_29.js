@@ -1,5 +1,5 @@
 {
-  //* forEach - method in array
+  //* forEach - method in array (couldn't return values)
 
   const arr = ["Pranaw, 26, true, undefined"];
 
@@ -41,7 +41,7 @@
 {
 
   //* Using forEach on an array of objects
-  
+
   const myArray = [
     {
       languageName: "JavaScipt",
@@ -62,4 +62,20 @@
   myArray.forEach ( (val) => {
     console.log(`Language name is ${val.languageName} and file name is ${val.languageFileName}`);
   })
+}
+
+{
+
+  //* Is returning values allowed in forEach?
+  //? NO!!!
+
+  let arr = ["Pranaw", 18, true, "Kumar"]
+
+  const values = arr.forEach ( (val) => {
+    return val;
+  })
+
+  console.log(values); //undefined!!
+
+  //! Since, forEach doesn't return any values (it acts as a void function)
 }
