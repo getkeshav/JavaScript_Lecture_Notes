@@ -24,9 +24,9 @@
 
   const arr = [26, "Pranaw", undefined, true, "Kumar"];
 
-  for (const val in arr) {
-    //console.log(val); -- prints the keys (indexes) of the array
-    console.log(arr[val]); // gives the values of the array
+  for (const x in arr) {
+    //console.log(x); -- prints the keys (indexes) of the array
+    console.log(arr[x]); // gives the values of the array
   }
 }
 
@@ -43,4 +43,36 @@
   }
 
  
+}
+
+{
+  /*
+
+Key Differences:
+
+Features(below)                    	for...in (keys)	                 for...of (values)
+
+Iterates over: 	                    Keys (property names)	           Values (elements)
+
+Works on:          	                Objects, Arrays	                 Arrays, Strings, Maps, Sets, NodeLists (Iterables)
+
+Includes inherited properties?	    Yes	                             No
+
+Returns index in an array?	        Yes	                             No 
+
+
+When to Use What?
+🔹 Use for...in when working with objects (to get property names).
+🔹 Use for...of when working with arrays, strings, or other iterables (to get values).
+
+
+🚀 TL;DR:
+
+for...in → for objects (keys)
+for...of → for arrays & iterables (values)
+
+
+
+*/
+
 }

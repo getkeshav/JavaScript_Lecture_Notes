@@ -30,14 +30,14 @@ for (let index = 0; index < myArray.length; index++) {
 
 //? break keyword is used to go outside the current scope in loops or switch case
 
-// for (let index = 1; index <= 20; index++) {
-//     if (index == 5) {
-//         console.log(`Detected 5`);
-//         break
-//     }
-//    console.log(`Value of i is ${index}`);
+for (let index = 1; index <= 20; index++) {
+    if (index == 5) {
+        console.log(`Detected 5`);
+        break
+    }
+   console.log(`Value of i is ${index}`);
     
-// }
+}
 
 for (let index = 1; index <= 20; index++) {
     if (index == 5) {
@@ -47,6 +47,5 @@ for (let index = 1; index <= 20; index++) {
    console.log(`Value of i is ${index}`);
     
 }
-
     
 }

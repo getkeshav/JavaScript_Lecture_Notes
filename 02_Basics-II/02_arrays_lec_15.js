@@ -63,7 +63,7 @@ x = ["Pranaw", 26]
 console.log(Array.isArray(x)) //true
 
 //* Array.from()
-//! Used to make a array from an array-like object
+//! Used to make a array from an array-like object (string, NodeList, HTMLCollection)
 
 console.log(Array.from("Pranaw")) //[ 'P', 'r', 'a', 'n', 'a', 'w' ]
 console.log(Array.from ({age : 18})) //does nothing, since we have to mention ki kiska array banana hai object mei- key ka ya value ka

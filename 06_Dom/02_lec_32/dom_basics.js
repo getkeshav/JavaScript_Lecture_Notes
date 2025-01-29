@@ -47,9 +47,10 @@
   //* To return the contents of the tags (elements)
 
   console.log(elem.innerHTML); //? gives the entire HTML inside the element selected
-  console.log(elem.innerText); //? gives only the content visible in the page (not returns the hidden content)
-  console.log(elem.textContent); //? gives entire text content inside it (even if something is hidden)
 
+  console.log(elem.innerText); //? gives only the content visible in the page (not returns the hidden content)
+
+  console.log(elem.textContent); //? gives entire text content inside it (even if something is hidden)
 
 }
 
@@ -70,8 +71,8 @@
     //* Others (like in CSS)
 
     document.querySelector ('input[type = "password"]')
-    
     document.querySelector ('p : first-child')
+    document.querySelector ('li :nth-child(2)')
 }
 
 {
@@ -97,7 +98,7 @@
 
     //! Here we get a node list of all elements (which is not an array, but is similar to array in few ways) 
 
-    //Note: In nodeList, we can access elements using indexes, we can use forEach loop on it
+    //Note: In nodeList, we can access elements using indexes, and we can also use forEach loop on it
 
     const templiList = document.querySelectorAll ('li') //? selects all the elements which are "li" and puts in a  node list - templiList
 
@@ -118,7 +119,6 @@
     const myArray = Array.from (templiList)
 
     //! Now we got an array and can use all methods on it like in an array
-
 
 }
 
@@ -144,4 +144,6 @@
 {
 
   //! We can use our classic for-loop on HTMLCollection and NodeList
+  
 }
+

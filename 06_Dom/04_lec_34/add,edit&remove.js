@@ -24,6 +24,7 @@
 
 
     const listItem = document.createElement("li");
+
     listItem.appendChild(document.createTextNode(langName))
 
 
@@ -37,13 +38,13 @@
 {
     //* Editting a list-item
 
-    //*Method-I 
+    //*Method-I (directly changing the innerHTML)
 
     const secondLang = document.querySelector("li:nth-child(2)")
 
     secondLang.innerHTML = "Mojo"
 
-    //* Method-II
+    //* Method-II (creating a new element and then replacing it with our target)
 
     const newli = document.createElement('li')
 
@@ -51,21 +52,19 @@
 
     secondLang.replaceWith(newli) //! .replaceWith() is used to replace secondLang with newli
 
-    //* Method-III
+    //* Method-III (chnaging the outerHTML)
 
     const firstLang = document.querySelector("li:first-child")
     firstLang.outerHTML = '<li>TypeScript</li>'
 
-
 }
-
 
 {
 
     //* Removing an list-item
 
     const lastLang = document.querySelector('li:last-child')
-    lastLang.remove()
-
     
+    lastLang.remove()
+  
 }

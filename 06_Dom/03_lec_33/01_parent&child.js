@@ -37,7 +37,7 @@
 
 }
 
-//! QuerySlector is an expensive operation as we are traversing the entire tree. Therfore, we can directly go to child from parent using above and from children to parent using below
+//! QuerySelector is an expensive operation as we are traversing the entire tree. Therfore, we can directly go to child from parent using above and from children to parent using below
 
 {
 
@@ -56,7 +56,7 @@
 }
 
 {
-
+  
     const iAmParent = document.querySelector('.week')
 
     //* NodeList
@@ -64,9 +64,5 @@
     //? A nodelist is a collection of document nodes which includes text nodes , attribute nodes and element nodes, comment nodes. A line break is also counted in nodelist.
 
     console.log("Nodes: ", iAmParent.childNodes);
-    //! We can see that NodeList also has elements other than our div child. These others include line break, since we are writing new div child in new line. It might also include comments node (if any)
-
-
-
-
+    //! We can see that NodeList also has elements other than our div child. These include text nodes, comments etc 
 }

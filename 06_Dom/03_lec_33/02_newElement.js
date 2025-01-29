@@ -30,7 +30,7 @@
 
 
 
-
     //? Below is to add the created element to the page
     document.body.appendChild(myNewElement)
+    
 }

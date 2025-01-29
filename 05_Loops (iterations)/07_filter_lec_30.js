@@ -1,42 +1,42 @@
-// {
-//   //* Filter
-//   //? here the parameters are same as in forEach loop (callback function, inside which first parameter is value, second is index and third is the array itself. second and third parameters in the function are optional)
+{
+  //* Filter
+  //? here the parameters are same as in forEach loop (callback function, inside which first parameter is value, second is index and third is the array itself. second and third parameters in the function are optional)
 
-//   //* explicit-return (using "return" keyword)
+  //* explicit-return (using "return" keyword)
 
-//   const myNum = [5, 26, 29, 100, -56];
+  const myNum = [5, 26, 29, 100, -56];
 
-//   //here values greater than 28 is filtered out into a new variable (array)
-//   const newNum = myNum.filter((val) => {
-//     return val > 28;
-//   });
+  //here values greater than 28 is filtered out into a new variable (array)
+  const newNum = myNum.filter((val) => {
+    return val > 28;
+  });
 
-//   console.log(newNum);
-//   console.log(myNum); //! No change in the original array
+  console.log(newNum);
+  console.log(myNum); //! No change in the original array
 
-//   //* Using implicit-return (here "return" keyword are not necessary!)
+  //* Using implicit-return (here "return" keyword are not necessary!)
 
-//   //here even numbers are filtered out
-//   const newArr = myNum.filter((val) => val % 2 === 0); //or myNum.filter ( (val) => val%2 === 0)
+  //here even numbers are filtered out
+  const newArr = myNum.filter((val) => (val % 2 === 0)); //or myNum.filter ( (val) => val%2 === 0)
 
-//   console.log(newArr);
-// }
+  console.log(newArr);
+}
 
-// {
-//   //* Doing the above examples using forEach
+{
+  //* Doing the above examples using forEach
 
-//   const myNum = [5, 26, 29, 100, -56];
+  const myNum = [5, 26, 29, 100, -56];
 
-//   const newNum = []; //empty array
+  const newNum = []; //empty array
 
-//   myNum.forEach((val) => {
-//     if (val > 28) {
-//       newNum.push(val);
-//     }
-//   });
+  myNum.forEach((val) => {
+    if (val > 28) {
+      newNum.push(val);
+    }
+  });
 
-//   console.log(newNum);
-// }
+  console.log(newNum);
+}
 
 {
   const books = [

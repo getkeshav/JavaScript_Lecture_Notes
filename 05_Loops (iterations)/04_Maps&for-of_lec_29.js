@@ -1,6 +1,6 @@
 
     //* Maps (Data-Type) -- Map is also an object!
-    //Note: Maps remember the relative order of datas entered. It also contains only unique key. Any duplicate key gets removed
+    //Note: Maps remember the relative order of datas entered. It also contains only unique key. Any duplicate key doesn't enters
 
     const mapName = new Map()
 
