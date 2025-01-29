@@ -19,22 +19,21 @@ let finalString = str1 + str2
 
 console.log(finalString)
 
-//Complex cases of number and string
+//* Complex cases of number and string
 
-//All outputs are of string
+//! All outputs are of string
 
-console.log("1" + "2") // 12
-console.log("1" + 2) // 12
-console.log(1 + "2") // 12
+console.log("1" + "2") // "12"
+console.log("1" + 2) // "12"
+console.log(1 + "2") // "12"
 
-console.log("1" + 3 + 2) //132 
-console.log(1 + 3 + "2") // 42 (since left to right execution)
+console.log("1" + 3 + 2) // "132" 
+console.log(1 + 3 + "2") // "42" (since left to right execution)
 
-//Assigning same value to multiple variables
+//* Assigning same value to multiple variables
 
 let num1, num2, num3;
 
 num1 = num2 = num3 = 2; //This works because assignment operator moves from right to left
 
-//Prefix and Postfix operators- Read about it (researcha bout it in MDN docs)
-
+//Prefix and Postfix operators- Read about it (research about it in MDN docs)

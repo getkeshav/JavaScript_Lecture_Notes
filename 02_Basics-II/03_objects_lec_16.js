@@ -61,12 +61,12 @@ console.log(jsUser)
     
     }
 
-    console.log(jsUser) //we can see a new member added (x)
+    console.log(jsUser)
 
     //* Adding a new property
 
     jsUser.x = 25 
-    console.log(jsUser)
+    console.log(jsUser)  //we can see a new member added (x)
 
     //* Adding a new method (function)
 
@@ -106,7 +106,7 @@ const mySym = Symbol ('key1')
 let obj = {
 
     name: "Pranaw",
-    [mySym] : "mykey1" //Syntax for using symbols as a key in an object (if boxes were enot used, it would have been made a string)
+    [mySym] : "mykey1" //Syntax for using symbols as a key in an object (if boxes were not used, it would have been made a string)
 
 }
 

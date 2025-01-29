@@ -1,7 +1,7 @@
 {
   //* Truth and falsy values
 
-  const userEmail = h.mail.com;
+  const userEmail = "h.mail.com";
 
   if (userEmail) {
     console.log("Got user email");
@@ -53,7 +53,7 @@
 }
 
 {
-    //* Interesting comparision
+    //* Interesting comparison 
 
     console.log(false == 0); //! true (since both false and 0 is considered falsy, therfore they are equal)
 

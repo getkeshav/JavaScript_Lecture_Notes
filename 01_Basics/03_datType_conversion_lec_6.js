@@ -1,12 +1,12 @@
-//Conversion from one data-type to others
+//* Conversion from one data-type to others
 
-//Converting to number
+//* Converting to number
 
 let score = "33"
 
 let scoreInNumber = Number (score) //This converts the string into a number
 
-//Hence, we can similarly convert to any dat-type by simple using its name with first letter as capital, like- String, Number, Boolean etc
+//Hence, we can similarly convert to any data-type by simple using its name with first letter as capital, like- String, Number, Boolean etc
 
 console.log(typeof score) //string
 console.log(typeof scoreInNumber) //number 
@@ -33,7 +33,7 @@ undefined => NaN
 
 */
 
-//Conversion to boolean
+//* Conversion to boolean
 
 let loggedIn = 1;
 let logged = Boolean (loggedIn)
@@ -55,7 +55,7 @@ Summary (from any data-type to a boolean)
 
 //Other data-type to string
 
-let num = "pranaw"
+let num = 23
 let numToString = String (num)
 
 console.log(numToString)

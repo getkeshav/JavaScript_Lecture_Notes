@@ -63,19 +63,20 @@ x = ["Pranaw", 26]
 console.log(Array.isArray(x)) //true
 
 //* Array.from()
-//! Used to make a array
+//! Used to make a array from an array-like object
 
 console.log(Array.from("Pranaw")) //[ 'P', 'r', 'a', 'n', 'a', 'w' ]
 console.log(Array.from ({age : 18})) //does nothing, since we have to mention ki kiska array banana hai object mei- key ka ya value ka
 
 //* Array.of()
-//! Returns a new array from a set of elements
+//! Returns a new array from a set of elements (any type)
 
 let s1 = 100
 let s2 = 200
 let s3 = 300
 let nam = "Pranaw"
 
-console.log(Array.of (s1, s2, s2, nam))
+console.log(Array.of (s1, s2, s3, nam))
+// console.log(Array.from (s1, s2, s3, nam)); //! error
 
 }

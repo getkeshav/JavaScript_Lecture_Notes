@@ -10,7 +10,7 @@ console.log(arr)
 
 console.log(arr[3]) //0-based indexed
 
-//! Shallow copies are made while copying an array (i.e. same memory block, refernce. SO, chnaging in the copied array, also changes the orignal array, since they have same memory block)
+//! Shallow copies are made while copying an array (i.e. same memory block, refernce. So, chnaging in the copied array, also changes the orignal array, since they have same memory block)
 
 
 //Array methods
@@ -45,10 +45,10 @@ console.log(newArr)
 
 newArr = arrNew.join ("-") //to joing using our desired string
 console.log(newArr)
-console.log(typeof newArr)
+console.log(typeof newArr) //string
 
 
-//* .slice(i, j) - returns the copy of section of an array from i to j-1 (j is excllusive)
+//* .slice(i, j) - returns the copy of section of an array from i to j-1 (j is exclusive)
 let a1 = [2, "Pranaw", true, 26]
 let a2 = a1.slice(1, 3) // 1 index se lekar 2 index tak ka copy 
 console.log(a2)
@@ -65,6 +65,3 @@ c1.splice(1, 2, "This is inserted") //here index 1 se 2 elements removed and an 
 console.log(c1)
 
 //NOTE: Here, original array mei change hua hai!!!
-
- 
-

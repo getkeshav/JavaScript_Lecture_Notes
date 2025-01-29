@@ -1,12 +1,12 @@
-"use strict"; //This is typed to treat all JS code in the file according to newer version
+"use strict"; //? This is typed to treat all JS code in the file according to newer version
 
-//alert (3+3) //gives error, since we are using node.js currently and not browser- run this in browser console
+alert (3+3) //! gives error, since we are using node.js currently and not browser- run this in browser console
 
 /*
 
-Types of data-types
+//* Types of data-types
 
-I- Primitive Data Type
+//* I- Primitive Data Type
 
 1. number (2^53)
 2. bigint 
@@ -16,7 +16,7 @@ I- Primitive Data Type
 6. undefined 
 7. symbol (unique)
 
-II- NOn-Primitive Data types
+//* II- Non-Primitive Data types
 
 1. object
 
@@ -24,7 +24,7 @@ II- NOn-Primitive Data types
 
 
 
-//To get the type of any data- use type of
+//* To get the type of any data- use type of
 
 let x = 5
 console.log(typeof x)
@@ -34,6 +34,5 @@ console.log(typeof "Pranaw")
 
 console.log(typeof (x))
 
-console.log(typeof null) //gives object as output; a drawback in the JS language
-console.log(typeof undefined) //gives undefined as output; undefined is a type of itself
-
+console.log(typeof null) //Note: gives object as output; a drawback in the JS language
+console.log(typeof undefined) //Note: gives undefined as output; undefined is a type of itself

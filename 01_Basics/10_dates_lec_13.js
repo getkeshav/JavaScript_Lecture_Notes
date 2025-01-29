@@ -1,6 +1,6 @@
-//Dates - Date is an object
+//* Dates - Date is an object
 
-//Use Temporal in future to implement dates and time. Read MDN documetation for latest method
+//! Use Temporal in future to implement dates and time. Read MDN documetation for latest method
 
 //Using the current way
 
@@ -16,7 +16,7 @@ console.log(myDate.toLocaleString())
 console.log(myDate.toLocaleDateString())
 
 
-console.log(myDate.getTime()) //.getTime() gives total milli-seconds from 1970 (some day) to today
+console.log(myDate.getTime()) //! .getTime() gives total milli-seconds from 1970 (some day) to today
 
 
 //Creating our desired date
@@ -45,12 +45,9 @@ let myTime = Date.now()
 console.log(Math.floor(myTime/1000));
 
 
-//To get month of current year etc
+//* To get month of current year etc
 
 let newDate = new Date();
 
 console.log(newDate.getMonth())
 console.log(newDate.getDay()) //gives the day of the week
-
-
-

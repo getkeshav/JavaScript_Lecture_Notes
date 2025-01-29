@@ -62,8 +62,7 @@ console.log(username) //gives error (since username ke scope se bahar aa gye)
         console.log("Success!");
     }
 
-
-    example2() //! ERROR, since function is not hoisted here
+    example2() //! ERROR, since function is not hoisted here (as we have used "let" keyword)
 
     let example2 = function () {
         console.log("success!");

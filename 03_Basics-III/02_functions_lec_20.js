@@ -18,6 +18,21 @@ function example (val1, val2, ...num) {
 console.log(example(5, 20, 56, 7, 66, "hi, 25")) //[ 56, 7, 66, 'hi, 25' ]
 //here, val1 and val2 takes the first two numbers, the rest is taken by num
 
+{
+
+    //* Adding numbers where we don't know the number of input
+
+    //? Here num is the array of arguments passed into the function, this array is then operatedc with .reduce() to find the sum of the input 
+
+    function addMe (...num) {
+        return num.reduce ((total, curr) => {
+            return total+curr
+        }, 0)
+    }
+
+    console.log(`Sum is : ${addMe (2, 5, 8, 5, 6)}`);
+}
+
 }
 
 {
@@ -61,7 +76,4 @@ console.log(example(5, 20, 56, 7, 66, "hi, 25")) //[ 56, 7, 66, 'hi, 25' ]
     console.log(retSecondVal([59, 26, 48, -89]))
 
 }
-
-{}
-
 

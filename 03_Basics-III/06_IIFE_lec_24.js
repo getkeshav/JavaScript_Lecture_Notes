@@ -55,3 +55,4 @@ IIFEs ensure variables are not accessible before their declaration, which can ha
 ((nam) => {
     console.log(`${nam} is a good programmer`);
 })("Pranaw");
+

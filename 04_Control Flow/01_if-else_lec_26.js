@@ -31,6 +31,7 @@
 }
 
 {
+  
   //*Short-hand notation (implicit scope)
   //! VVVV.Imp (; is necessary in this short-notation, to tell that our scope has ended)
 

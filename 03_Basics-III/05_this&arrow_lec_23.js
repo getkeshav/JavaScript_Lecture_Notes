@@ -1,86 +1,85 @@
-// {
-// //* What happens when we don't use "this" keyword in object 
-// //here we have used "this" keyword (this.property) for userName, while we hardcoded the age (used obj_name.property)
+{
+//* What happens when we don't use "this" keyword in object 
+// here we have used "this" keyword (this.property) for userName, while we hardcoded the age (used obj_name.property)
 
-// const user = {
+const user = {
 
-//     userName : "Pranaw Kumar",
+    userName : "Pranaw Kumar",
 
-//     age : 18,
+    age : 18,
 
-//     welcome : function () {
-//         console.log(`My name is ${this.userName} and age is ${user.age}`);
-//     }
-// }
+    welcome : function () {
+        console.log(`My name is ${this.userName} and age is ${user.age}`);
+    }
+}
 
-// //Creating another object with same property (except the function)
-// const user2 = {
+//Creating another object with same property (except the function)
+const user2 = {
 
-//     userName : "W Kumar",
+    userName : "W Kumar",
 
-//     age : 26,
+    age : 26,
 
-//     greet : user.welcome //here we have reused the function of user object
-// }
+    greet : user.welcome //here we have reused the function of user object
+}
 
-// user2.greet() //My name is W Kumar and age is 18
-// //? Clearly, from the output we can see that we got the name of user2, but the age of user. Why?? Because we didn't use "this" keyword for the age property
+user2.greet() //My name is W Kumar and age is 18
+//? Clearly, from the output we can see that we got the name of user2, but the age of user. Why?? Because we didn't use "this" keyword for the age property
 
-// //Note: Without "this" keyword, we would need to rewrite the method for every object, which defeats the purpose of object-oriented programming (i.e. we can't reuse our codes, without "this" keyword)
+//Note: Without "this" keyword, we would need to rewrite the method for every object, which defeats the purpose of object-oriented programming (i.e. we can't reuse our codes, without "this" keyword)
 
-// //Note: This is one of the reasons to use "this" keyword
-
-
-// }
-
-// {
-
-//     const user = {
-
-//         userName : "Pranaw Kumar",
-//         price : 999,
-
-//         //! "this" keyword refers the current context
-//         welcome : function () {
-//             console.log(`Welcome, ${this.userName} to our website!`);
-//             console.log("");
-//             console.log(this); //! This shows the current context
-//             console.log("");
-//         }
-//     }
-
-//     user.welcome()
-//     user.userName = "W Kumar"
-//     user.welcome()
-
-//     //! V.V.Imp!!!!!!!!!!!!!!!!!!!!!!1
-//     console.log(this) 
-//     //? For node environment, current context is none. Therefore, here it prints {} (empty object)
-
-//     //? But for browser window, it prints the "Window object", which is the global object in the browser console. This global object (Window) helps to capture us various events of Window (DOM)
+//Note: This is one of the reasons to use "this" keyword
 
 
-// }
+}
 
-// {
+{
 
-//     function chai() {
-//         console.log(this);
-//     }
+    const user = {
 
-//     chai() //prints global object
+        userName : "Pranaw Kumar",
+        price : 999,
 
-//     function chai2 () {
-//         let nam = "Pranaw Kumar"
+        //! "this" keyword refers the current context
+        welcome : function () {
+            console.log(`Welcome, ${this.userName} to our website!`);
+            console.log("");
+            console.log("This is 'this': ", this); //! This shows the current context
+            console.log("");
+        }
+    }
 
-//         console.log(this.nam) //! undefined. Here, we can't access nam. Since this only works for context in objects and not functions
-//     }
+    user.welcome()
+    user.userName = "W Kumar"
+    user.welcome()
 
-//     chai2() //undefined 
+    //! V.V.Imp!!!!!!!!!!!!!!!!!!!!!!1
+    console.log(this) 
+    //? For node environment, current context is none. Therefore, here it prints {} (empty object)
+
+    //? But for browser window, it prints the "Window object", which is the global object in the browser console. This global object (Window) helps to capture us various events of Window (DOM)
 
 
+}
 
-// }
+{
+
+    //* Using "this" keyword inside function (without objects)
+    function chai() {
+        console.log(this);
+    }
+
+    chai() //prints global object
+
+    function chai2 () {
+        let nam = "Pranaw Kumar"
+
+        console.log(this.nam) //! undefined. Here, we can't access nam. Since this only works for context in objects and not functions
+    }
+
+    chai2() //undefined 
+
+}
 
 {
 
@@ -117,7 +116,7 @@
 
     //*Implicit return (used for single-line statements)
 
-    //here no curly braces and return keyword is used
+    //! here no curly braces and return keyword is used
     //*Method-I
 
     const sumNum = (num1, num2) => num1 + num2

@@ -13,7 +13,7 @@ console.log(course.price) //! Using dot operator
 
 //We can also access the property using object destructuring
 
-//* Object Destructuring
+//* Method-II: Object Destructuring
 
 const {price} = course //using this, we can easily access price (property) of the object without using couse.price again and again
 

@@ -1,4 +1,4 @@
-//LEcture notes
+//Lecture notes
 
 {
   console.log("BLOCK 1: ");
@@ -6,15 +6,16 @@
   const name = "Pranaw";
   const repoCount = 10;
 
-  console.log(name + repoCount + " Value"); //This type of concatenations is not at all reccomended in modern times.
+  console.log(name + repoCount + " Value"); //! This type of concatenations is not at all reccomended in modern times.
 
   //Another way to print multiple datas using a single console.log
-  console.log(name, repoCount, "Value"); //Also, not reccomended
+  console.log(name, repoCount, "Value"); //! Also, not reccomended
 
-  //Recommended method!!!----- String Interpolation (modern method)- This can also be used for concatenation
+  //! Recommended method -- String Interpolation (modern method)- This can also be used for concatenation
 
   //This syntax is much more recommended due to readiblity
   console.log(`Hello my name is ${name} and my repo count is ${repoCount}`); //Use backticks. ${data_name}
+
 }
 
 //Self notes
@@ -26,23 +27,23 @@
 
   //There are two types by which string can be declared
 
-  //I - Primitive String
+  //* I - Primitive String
 
   let s = "Hello";
   console.log(typeof s); //string
 
-  //II - String object
+  //* II - String object
 
   let s2 = new String("Hello");
   console.log(typeof s2); //object
 
-  //Comparisions
+  //* Comparisions
 
   console.log(s === "Hello"); // true (compares value)
   console.log(s2 === "Hello"); // false (compares object with string)
   console.log(s2 == "Hello"); // true (value is coerced for comparison)
 
-  //When accessing methods like (.toUpperCase()) in either of the type, the change happens in a copy of the string or object (as strings are immutable in JavaScript)
+  //* When accessing methods like (.toUpperCase()) in either of the type, the change happens in a copy of the string or object (as strings are immutable in JavaScript)
 
   //ex-
 
@@ -91,7 +92,7 @@ It returns this new string without modifying the original s2.
 
   /*
   
-  String acts aa an object (key-value pairs)
+  String acts as an object (key-value pairs) here
 
     0 : 'P'
     1 : 'r'
@@ -110,31 +111,31 @@ It returns this new string without modifying the original s2.
 
   //Methods (function)
 
-  //.length
+  //* .length
   console.log(gameName.length);
 
-  //.toUpperCase()
+  //* .toUpperCase()
   console.log(gameName.toUpperCase); //original value not changed
 
-  //.charAt()
+  //* .charAt()
   console.log(gameName.charAt(5)); //input the index and get char as an output
 
-  //.indexOf()
+  //* .indexOf()
   console.log(gameName.indexOf("n")); //gives index as an output
 
-  //HW. Read abouot some other string methods
+  //HW. Read about some other string methods
 
-  //.slice() --extracts a part of the string
+  //* .slice() --extracts a part of the string
   let newString = gameName.slice(1, 3); //1 index se 2 tak (last wala excluded)
   console.log(newString);
 
-  //.substring() --extarcts a part of the string
+  //* .substring() --extracts a part of the string
   let anotherString = gameName.substring(1, 3); //yaha bhi last wala excluded
   console.log(anotherString);
 
   /*
     
-    Difference between .slice() and .substring()
+    //* Difference between .slice() and .substring()
 
     .splice() can take negative indexes as well, while if .subtring() encounters a negative treats it as 0. (therefore, negative doesn't work in substring)
 
@@ -154,28 +155,28 @@ It returns this new string without modifying the original s2.
   temp = gameName.slice(-5, -2);
   console.log("Slice with both neg. index: ", temp);
 
-  //.trim()
-  let newStringOne = "       Pra   na  w    ";
+  //* .trim()
+  let newStringOne = "       Pra      na     w    ";
   console.log(newStringOne);
   console.log(newStringOne.trim()); //it deletes the leading and trailing (endling) white spaces and new-line terminator
 
-  //.replace()
+  //* .replace()
   let url = "https://quizzzards.vercel.com";
   url.replace("zzz", "tt");
-  console.log(url); //NOTE::: It does nothing!! since change toh original mei hua hi nahi
+  console.log(url); //NOTE: It does nothing!! since change toh original mei hua hi nahi
 
   url = url.replace("zzz", "tt"); //Ek dusre copy mei change hua, which we copied to our original string
   console.log(url);
 
-  //.includes()
+  //* .includes()
   console.log(url.includes("qui")); //true or false depending on if the substring is present or not
 
   let t = "Pra-Na-W-Kum-Ar  27/02/2006-18";
 
-  //.split()
+  //* .split() - return an array
   let tNew = t.split("-"); //converts into a string by splitting on the basis of "-"
   console.log(tNew);
 
-  let tNew2 = t.split(""); //this conbverts the entire string in array charcter-wise
+  let tNew2 = t.split(""); //! this converts the entire string in array charcter-wise
   console.log(tNew2);
 }
