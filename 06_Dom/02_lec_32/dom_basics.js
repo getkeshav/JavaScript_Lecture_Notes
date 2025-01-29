@@ -140,3 +140,8 @@
 
 
 }
+
+{
+
+  //! We can use our classic for-loop on HTMLCollection and NodeList
+}
