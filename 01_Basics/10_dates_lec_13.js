@@ -30,7 +30,7 @@ let tempDate = new Date ("2020-01-15") //here moths are 1-indexed
 console.log(tempDate.toLocaleString()) 
 
 
-//Timestamps
+//* Timestamps
 
 let myTimeStamp = Date.now() //gives the current time (in form of milli-seconds from 1970)
 
@@ -38,7 +38,7 @@ let otherDate = new Date ("2020-05-14")
 
 let otherTimeStamp = otherDate.getTime() //gives the time in milli-second from 1970 to the set date
 
-//To convert current time (from 1970) in seconds
+//* To convert current time (from 1970) in seconds
 
 let myTime = Date.now()
 

@@ -1,4 +1,30 @@
 {
+
+    //* Important discussion
+
+    //Event listeners once attached to an element remains thoroughout until and unless it is removed manuallyy. To do this use named function as an parameter
+
+    //Named function
+    function handleClick() {
+        console.log("Button clicked!");
+    }
+    
+    // Select the button
+    let button = document.querySelector("button");
+    
+    // Add event listener - we used named functionn reference instead of an anonymous function
+    button.addEventListener("click", handleClick);
+    
+    // Remove event listener after 5 seconds
+    setTimeout(() => {
+        button.removeEventListener("click", handleClick); // this removes the event listener from the element
+        console.log("Event listener removed!");
+    }, 5000);
+    
+}
+
+
+{
   //* onclick
 
   //*Method-I (using onclick in the HTML tag itself)
