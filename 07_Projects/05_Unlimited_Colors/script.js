@@ -1,4 +1,4 @@
-let intervalId;
+let intervalId; //intervalId refernce is set to global scope to access it everywhere!
 
 let isColorShift = false; //this is done to avoid triggering multiple setInterval
 
