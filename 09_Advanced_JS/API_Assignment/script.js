@@ -19,12 +19,12 @@
           const data = JSON.parse(this.responseText);
           console.log("Data fetched!");
 
-          if (data.name) {
+          if (data.login) {
 
           //* Data fetched succesfully! Add DOM here
           document.querySelector("#pfp").innerHTML = `<a href ="https://github.com/${userName}" target = "_blank"><img src ="${data.avatar_url}"></a>`
 
-          document.querySelector("#userName").innerHTML = `${data.name}`
+         data.name ? document.querySelector("#userName").innerHTML = `${data.name}` : document.querySelector("#userName").innerHTML = `${data.login}`;
 
           document.querySelector('#followers').innerHTML = `Followers: ${data.followers}`
 
