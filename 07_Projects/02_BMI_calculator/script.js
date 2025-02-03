@@ -2,14 +2,18 @@
 
 //* Key-Takeaways-
 
-//! parseInt ()
-//! isNaN ()
-//! 'submit' type event
-//! e.preventDefault()
+
+
+- parseInt () : this parses anything into integer type
+- isNaN () :this checks if something is NaN or not (Not a Number)
+'submit' type event : activates when a form is submitted
+e.preventDefault() : prevents the default behaviour of an event (here submitting and resetting hte values)
 
 
 
 */
+
+
 
 
 

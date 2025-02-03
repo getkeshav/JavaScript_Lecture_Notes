@@ -23,4 +23,4 @@ stopBtn.addEventListener ('click', (e) => {
 })
 
 
-//! Here when we click the start button, text appears on the screen after every 2 seconds and when we click the stop button, text stops appearing (NOTE:: Don't click start button more than once before stoping)
+//! Here when we click the start button, text appears on the screen after every 2 seconds and when we click the stop button, text stops appearing (NOTE:: Don't click start button more than once before stoping)- to tackle this we can use bool and make some if-else statements

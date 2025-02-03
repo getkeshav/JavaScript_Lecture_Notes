@@ -2,10 +2,10 @@
 
     //* Important discussion
 
-    //Event listeners once attached to an element remains thoroughout until and unless it is removed manuallyy. To do this use named function as an parameter
+    //! Event listeners once attached to an element remains thoroughout until and unless it is removed manually. To do this use named function as an parameter
 
     //Named function
-    function handleClick() {
+    function handleClick(e) {
         console.log("Button clicked!");
     }
     
@@ -25,7 +25,7 @@
 
 
 {
-  //* onclick
+  //* How to deal with clicking an element and doing something
 
   //*Method-I (using onclick in the HTML tag itself)
   //! This method is avoided and not a good practice
@@ -68,27 +68,44 @@
 
   /*
 
+Here's a quick rundown of all these event properties in JavaScript:
 
-    -type
-    -timeStamp
-    -preventDefault
-    -target
-    -toElement
-    -srcElement
-    -currentTarget
-    -clientX
-    -clientY
-    -screenX
-    -screenY
-    -altkey
-    -ctrlkey
-    -shiftkey
-    -keyCode    
-    
+- type → The type of event (e.g., `"click"`, `"keydown"`, `"mouseover"`).  
+
+- timeStamp → The time (in milliseconds) when the event was created.  
+
+- preventDefault() → A method that prevents the default action of an event (e.g., stopping a form submission).  
+
+- target → The actual element that triggered the event.  
+
+- toElement → The element the pointer moved to (mostly used in `mouseover/mouseout` events, but not standard in modern browsers).  
+
+- srcElement → Same as `target`, but mainly used in older versions of Internet Explorer.  
+
+- currentTarget → The element that the event listener is attached to (useful for event delegation).  
+
+- clientX → The x-coordinate of the mouse relative to the viewport (browser window).  
+
+- clientY → The y-coordinate of the mouse relative to the viewport.  
+
+- screenX → The x-coordinate of the mouse relative to the entire screen. 
+
+- screenY → The y-coordinate of the mouse relative to the screen.  
+
+- altKey → `true` if the `Alt` key was pressed during the event, otherwise `false`.  
+
+- ctrlKey → `true` if the `Ctrl` key was pressed.  
+
+- shiftKey → `true` if the `Shift` key was pressed.  
+
+- keyCode → The numeric code of the key pressed (deprecated, use `event.key` instead).  
+
     */
 }
 {
     //? The parameter of the function is the event object. You can see by doing console.log ("parameter_name")
+
+    //? The event object is a built-in object that carries all data about an event whenever an event listener runs.
 }
 {
   /*
@@ -211,11 +228,16 @@
 
         //* Method-I (modern approach)
 
-        const toBeRemoved = e.target.parentNode
+        const toBeRemoved = e.target.parentNode //if an image was to be clicked, it's parent node would have been the li containign the image...
 
         if (e.target.tagName == 'IMG') {
 
         toBeRemoved.remove() //? This is the modern approach
+
+
+    //? Why the if condition was used above?
+    //! If we click on image then the target becomes img and hence its parent becomes li, which gets removed!! This is what we want.... BUT!!! If we click inside ul anywhere other than the image, the target element becomes li, whose parent element is ul, which when gets removed, removes the ul entirely (which causes every elements inside the ul to get deleted)
+
 
         //* Method-II (used earlier)
 
@@ -232,6 +254,5 @@
 
     })
 
-    //? Why the if condition was used above?
-    //! If we click on image then the target becomes img and hence its parent becomes li, which gets removed!! This is what we want.... BUT!!! If we click inside ul anywhere other than the image, the target element becomes li, whose parent element is ul, which when gets removed, removes the ul entirely (which causes every elements inside the ul to get deleted)
+ 
 }
