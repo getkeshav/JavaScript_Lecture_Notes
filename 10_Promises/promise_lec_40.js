@@ -238,3 +238,12 @@ fetch('https://api.github.com/users/hiteshchoudhary')
 
 
 }
+
+
+{
+
+
+    //* Important point for interview
+
+    //! Promise doesn't reject on HTTP errors (like 404 etc), even in such cases it gives response (and not rejects)
+}
