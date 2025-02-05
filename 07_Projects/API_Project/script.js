@@ -34,9 +34,34 @@ inputElement.addEventListener("keydown", (e) => {
         const data = JSON.parse(this.responseText); //we receive a string data, which we parse into JSON
         console.log("Data fetched!");
 
+        //login is the username we get from the api. If the username exists (i.e. if the user exists then only the below is executed)
+        if (data.login) {
+          //* Data fetched succesfully! Add DOM here
+          document.querySelector(
+            "#pfp"
+          ).innerHTML = `<a href ="https://github.com/${userName}" target = "_blank"><img src ="${data.avatar_url}"></a>`;
+
+          //checking if the user has set his name. If not just display his username
+          data.name
+            ? (document.querySelector("#userName").innerHTML = `${data.name}`)
+            : (document.querySelector("#userName").innerHTML = `${data.login}`);
+
+          document.querySelector(
+            "#followers"
+          ).innerHTML = `Followers: ${data.followers}`;
+
+          document.querySelector(
+            "#following"
+          ).innerHTML = `Following: ${data.following}`;
+
+          document.querySelector(
+            "#gitRepo"
+          ).innerHTML = `Total Git Repo: ${data.public_repos}`;
+        }
+
         //if 404 is received from the API, it means an error has occured (we also check if the input value is not empty)
         //here we went to each elements and removed the innerText, then we added our text.
-        if (data.status == 404 && e.target.value) {
+        else if (data.status == 404 && e.target.value) {
           Array.from(document.querySelector(".cardHolder").childNodes).forEach(
             (element) => {
               console.log(element);
@@ -63,29 +88,15 @@ inputElement.addEventListener("keydown", (e) => {
           document.querySelector("#userName").innerHTML = "API limit exceeded!";
         }
 
-        //login is the username we get from the api. If the username exists (i.e. if the user exists then only the below is executed)
-        else if (data.login) {
-          //* Data fetched succesfully! Add DOM here
-          document.querySelector(
-            "#pfp"
-          ).innerHTML = `<a href ="https://github.com/${userName}" target = "_blank"><img src ="${data.avatar_url}"></a>`;
+        else {
+          Array.from(document.querySelector(".cardHolder").childNodes).forEach(
+            (element) => {
+              console.log(element);
+              element.innerText = "";
+            }
+          );
 
-          //checking if the user has set his name. If not just display his username
-          data.name
-            ? (document.querySelector("#userName").innerHTML = `${data.name}`)
-            : (document.querySelector("#userName").innerHTML = `${data.login}`);
-
-          document.querySelector(
-            "#followers"
-          ).innerHTML = `Followers: ${data.followers}`;
-
-          document.querySelector(
-            "#following"
-          ).innerHTML = `Following: ${data.following}`;
-
-          document.querySelector(
-            "#gitRepo"
-          ).innerHTML = `Total Git Repo: ${data.public_repos}`;
+          document.querySelector("#userName").innerHTML = "Kindly enter a valid username!";
         }
       }
     };
