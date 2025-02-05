@@ -1,3 +1,8 @@
+//* client-x vs page-x
+
+// client-x: x-axis px relative to view-port
+// page-x : x-axis px relative to full page (including any scroll offset)
+
 const Mousecursor = document.querySelector(".cursor");
 const button = document.querySelector('.btn')
 const data = document.querySelector('.totalColorCount')
@@ -17,7 +22,7 @@ function randomColor() {
   Mousecursor.style.backgroundColor = `rgba(${red}, ${blue}, ${green})`;
 }
 
-document.addEventListener("mousemove", (e) => {
+window.addEventListener("mousemove", (e) => {
   randomColor();
 
   colorCount++;
@@ -36,9 +41,3 @@ document.addEventListener("mousemove", (e) => {
 });
 
 
-
-
-//* client-x vs page-x
-
-// client-x: x-axis px relative to view-port
-// page-x : x-axis px relative to full page (including any scroll offset)
