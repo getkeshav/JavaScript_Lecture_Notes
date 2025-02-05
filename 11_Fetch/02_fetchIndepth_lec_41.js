@@ -1,19 +1,4 @@
 {
-    /*
-
-    //* Handeling APIS
-
-    - XMLHttpRequest (XHR) - old and not reccomended
-    - fetch() (using .then and .catch) - reccomended (modern approach)
-    - fetch() (using async, awit, try, catch) - reccomended
-
-
-     */
-
-}
-
-
-{
 
     //* fetch
     //? The global fetch() method starts the process of fetching a resource from the network. returning a promise which is fulfilled once the response is available.

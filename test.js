@@ -1,3 +1,20 @@
-const str  = "Pranaw Kumar"
+const txtArea = document.querySelector('.typed-text')
 
-console.log (str.)
+
+
+const addLetters = (value) => {
+
+  const index = 0
+
+    setInterval ((index) => {
+
+        const newTxt = value.substr (0, index+1)
+        index++    
+
+        txtArea.innerHTML = newTxt;
+
+        
+    }, 200)
+}
+
+addLetters(cool)
