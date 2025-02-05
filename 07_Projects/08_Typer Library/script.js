@@ -1,77 +1,73 @@
-let arr;
+let arr; //this is the array of strings
 
-const timeDelay = 150;
+const timeDelay = 120;
+const factor = 5;
 
-const txtArea = document.querySelector('.typed-text')
+const txtArea = document.querySelector(".typed-text");
 
+function deleteLetters(value) {
+  let index = value.length;
 
+  const endId = setInterval(() => {
+    let newTxt = value.substr(0, index);
+    index--;
 
+    txtArea.innerHTML = newTxt;
 
-function deleteLetters (value) {
-
-    let index = value.length
-    
-    const endId = setInterval (() => {
-
-        let newTxt = value.substr (0, index)
-        index--   
-
-        txtArea.innerHTML = newTxt;
-
-        if (index == -1) {
-            clearInterval (endId)
-            randomIdgenerator(arr.length, arr)
-        }
-        
-    }, timeDelay)
-    
-
-  
+    if (index == -1) {
+      clearInterval(endId);
+      randomIdgenerator();
+    }
+  }, timeDelay);
 }
 
-function addLetters (value) {
+function addLetters(i) {
+  const value = arr[i];
+  console.log(arr);
+  if (arr.length == 0) {
+    console.log("END");
 
-  let index = 0
+    setTimeout(newLetters, timeDelay * factor);
 
-    const startId = setInterval (() => {
+    return;
+  }
 
-        let newTxt = value.substr (0, index+1)
-        index++    
+  arr.splice(i, 1);
 
-        txtArea.innerHTML = newTxt;
+  let index = 0;
 
-        if (index == value.length) {
-            clearInterval (startId)
-            deleteLetters(value)
-        }
-        
-    }, timeDelay)
+  const startId = setInterval(() => {
+    let newTxt = value.substr(0, index + 1);
+    index++;
 
+    txtArea.innerHTML = newTxt;
+
+    if (index == value.length) {
+      clearInterval(startId);
+
+      setTimeout(() => {
+        deleteLetters(value);
+      }, timeDelay * factor);
+    }
+  }, timeDelay);
 }
 
-function randomIdgenerator (range, arr) {
+function randomIdgenerator() {
+  const i = Math.floor(Math.random() * arr.length);
 
-    const index = Math.floor(Math.random()*range)
-
-    addLetters (arr[index])
-
+  setTimeout(() => {
+    addLetters(i);
+  }, timeDelay * factor);
 }
-
 
 async function newLetters() {
+  let randomTextCollection = await fetch("extraTxt.txt");
 
-    let randomTextCollection = await fetch ('extraTxt.txt')
+  randomTextCollection = await randomTextCollection.text();
 
-    randomTextCollection = (await randomTextCollection.text()).split('\n')    
+  arr = await randomTextCollection.split("\n");
 
-    arr = randomTextCollection;
-
-    randomIdgenerator (randomTextCollection.length, randomTextCollection)
-    
+  randomIdgenerator();
 }
 
-
-newLetters ()
-
-
-
+newLetters();

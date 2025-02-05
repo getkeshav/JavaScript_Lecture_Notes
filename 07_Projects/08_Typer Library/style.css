@@ -27,6 +27,14 @@
   }
   
   .cursor {
-    background: #dbe912;
+    /* background: #dbe912; */
+    color: #dbe912;
+    animation: blinkAnimation 800ms infinite;
+  }
+
+  @keyframes blinkAnimation {
+    0%, 100% { opacity: 1; }
+    25%, 75% {opacity: 0.5;}
+    50% { opacity: 0; }
   }
   

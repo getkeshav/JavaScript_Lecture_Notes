@@ -1,20 +1,5 @@
-const txtArea = document.querySelector('.typed-text')
+arr = [1]
 
+arr.splice (0, 1)
 
-
-const addLetters = (value) => {
-
-  const index = 0
-
-    setInterval ((index) => {
-
-        const newTxt = value.substr (0, index+1)
-        index++    
-
-        txtArea.innerHTML = newTxt;
-
-        
-    }, 200)
-}
-
-addLetters(cool)
+console.log(arr.length);
