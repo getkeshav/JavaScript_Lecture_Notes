@@ -1,4 +1,4 @@
-
+let arr;
 
 const timeDelay = 150;
 
@@ -20,7 +20,7 @@ function deleteLetters (value) {
 
         if (index == -1) {
             clearInterval (endId)
-            randomIdgenerator()
+            randomIdgenerator(arr.length, arr)
         }
         
     }, timeDelay)
@@ -63,6 +63,8 @@ async function newLetters() {
     let randomTextCollection = await fetch ('extraTxt.txt')
 
     randomTextCollection = (await randomTextCollection.text()).split('\n')    
+
+    arr = randomTextCollection;
 
     randomIdgenerator (randomTextCollection.length, randomTextCollection)
     
