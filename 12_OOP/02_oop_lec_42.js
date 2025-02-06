@@ -59,18 +59,6 @@
     console.log(typeof User); // function
   
 
-    //* new
-
-    /*
-    
-    -Object creation: When we use a new keyword, an empty object is created, which is called an instance.
-
-    -Call of constructor function: This is called using the new keyword
-
-    -All arguments, then gets packed inside the constructor function, then all argunment gets injected    
-    
-    */
-
     console.log(userOne.constructor); //it is a reference to itself
 
 }
