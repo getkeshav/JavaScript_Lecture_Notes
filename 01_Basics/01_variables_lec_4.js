@@ -4,7 +4,7 @@
 //let, var for variables
 
 const accountId = 5
-//accountId = 2 //Not allowed (since const can't be redefinded!!!)
+//accountId = 2 //! Not allowed (since const can't be redefinded!!!)
 
 let accountCity = "Delhi"
 accountCity = "Jharkhand" //Allowed (since let allows redefinition)

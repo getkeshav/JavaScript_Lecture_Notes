@@ -37,6 +37,3 @@ let r2 = sum (5, 2)
 Note: Understand call stack by:
 
 Inspect -> Sources -> Adding a code snippet -> Adding break-points -> Save -> Run each time and check call stack
-
-
-

@@ -81,6 +81,7 @@ It creates a new string with all characters converted to uppercase ('HELLO').
 It returns this new string without modifying the original s2.
 
 */
+
 }
 
 //Lecture notes

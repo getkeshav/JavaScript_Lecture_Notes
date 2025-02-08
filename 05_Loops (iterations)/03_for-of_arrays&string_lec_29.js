@@ -19,13 +19,6 @@
     console.log(letter);
   }
 
-  const obj = {
-    name: "Pranaw",
-    age: 18,
-    greet: function () {
-      console.log("Hello World!");
-    },
-  };
 }
 
 {

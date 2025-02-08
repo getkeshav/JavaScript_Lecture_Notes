@@ -93,7 +93,6 @@ console.log(ob1) //All the changes reflected in ob1 directly
 
 let b1 = {1 : "a", 2 : "b"}
 let b2 = {3 : "c", 4 : "d"}
-let b3 = {5 : "e"}
 
 let d = {...b1, ...b2}
 console.log(d)

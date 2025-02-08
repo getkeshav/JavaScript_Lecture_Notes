@@ -7,6 +7,7 @@
 1. Avoiding Global Scope Pollution:
 
 JavaScript has a single global scope in browsers. Declaring variables in the global scope can cause name collisions or unintended overwrites.
+
 IIFE creates a local scope for variables, ensuring they don’t interfere with other parts of the code.
 javascript
 
