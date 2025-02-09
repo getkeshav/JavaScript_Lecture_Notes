@@ -11,7 +11,7 @@ const factSpan = document.querySelector('.fact')
 let colorCount = 0;
 
 button.addEventListener ('click', () => {
-    window.location.href = "/07_Projects/index.html"
+    window.location.href = "https://js-mini-projects-pink.vercel.app/"
 })
 
 function randomColor() {
