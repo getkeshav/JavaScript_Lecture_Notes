@@ -1,5 +1,7 @@
 let arr; //this is the array of strings
 
+const sound = document.querySelector("#type_audio");
+
 const timeDelay = 120;
 const factor = 5;
 
@@ -16,6 +18,7 @@ function deleteLetters(value) {
 
     if (index == -1) {
       clearInterval(endId);
+      sound.pause()
       randomIdgenerator();
     }
   }, timeDelay);
@@ -41,12 +44,16 @@ function addLetters(i) {
     index++;
 
     txtArea.innerHTML = newTxt;
+    sound.play();
+    sound.loop = true;
 
     if (index == value.length) {
       clearInterval(startId);
+      sound.pause();
 
       setTimeout(() => {
         deleteLetters(value);
+        sound.play();
       }, timeDelay * factor);
     }
   }, timeDelay);
@@ -71,4 +78,3 @@ async function newLetters() {
 }
 
 newLetters();
-
