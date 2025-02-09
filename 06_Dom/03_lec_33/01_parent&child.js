@@ -2,7 +2,10 @@
   //* Parent to Children (.children)
   const parentClass = document.querySelector(".week");
 
-  //! By adding '.children' to the element, we can acess the child elements (in HTMLCollection)
+  //! By adding '.children' to the element, we can acess the child elements (in HTMLCollection) 
+  
+  //? Here we can only access the child elements, but by using .childNodes, we can access other than child elements as well like text node etc
+
   console.log(parentClass.children);
 
   //Note: Since, it is HTMLCollection, we can access elements by indexes.

@@ -24,12 +24,15 @@
   
   .typed-text {
     color: #de8512;
+    text-decoration: dashed underline;
+    
   }
   
   .cursor {
     /* background: #dbe912; */
     color: #dbe912;
     animation: blinkAnimation 800ms infinite;
+    
   }
 
   @keyframes blinkAnimation {

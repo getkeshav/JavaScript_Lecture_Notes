@@ -2,7 +2,7 @@
   //* To get the element
   const elem = document.getElementById("title"); //? gets element by its id
 
-  document.getElementsByClassName("heading"); //? gets element by its class
+  document.getElementsByClassName("heading"); //? gets all elements by its class
 
   //* To get value of attributes of the element
   document.getElementById("title").id; //? returns the id of the selected element
@@ -72,7 +72,7 @@
 
     document.querySelector ('input[type = "password"]')
     document.querySelector ('p : first-child')
-    document.querySelector ('li :nth-child(2)')
+    document.querySelector ('li : nth-child(2)')
 }
 
 {
