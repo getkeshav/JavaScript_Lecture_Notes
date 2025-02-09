@@ -1,6 +1,5 @@
 {
 
-
     function setUsername (userName) {
         this.userName = userName
         console.log("Inside setUsername");
