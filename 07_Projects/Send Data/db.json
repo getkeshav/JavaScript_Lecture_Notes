@@ -12,5 +12,10 @@
       "age": "19",
       "mail": "adarsh@gmail.com"
     }
+  ],
+
+  "user2" : [
+    {}
+    
   ]
 }
