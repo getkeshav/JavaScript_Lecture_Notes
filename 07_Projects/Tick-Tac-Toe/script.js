@@ -5,7 +5,7 @@ let isCross = false; //keeps track of the upcoming move (cross or circle)
 let boxValues = []; //keeps track of the move played in each box
 
 //makes a new empty canvas
-function startNewGame(d) {
+function startNewGame(d = boxSize) {
   if (!canvas.getContext) {
     alert("Canvas not supported in your browser!");
     return;
@@ -33,7 +33,6 @@ function startNewGame(d) {
 // used to add a circle to any box (n)
 function circle(n, d = boxSize) {
   if (n <= 0 || n > 9) return;
-  
   let x = (((n - 1) % 3) + 1) * d - d / 2; // x-coordinate of the center of the circle in the box
   let y = Math.floor((n + 2) / 3) * d - d / 2; // y-coordinate of the center of the circle in the box
 
