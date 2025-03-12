@@ -1,8 +1,9 @@
 const canvas = document.getElementById("gameArea"); //selects the canvas element
 const ctx = canvas.getContext("2d"); //creates a 2d context for the canavas
+const gameStatus = document.getElementById("status");
 const boxSize = 200; //initializes the size of the grid (box)
 let isCross = false; //keeps track of the upcoming move (cross or circle)
-let boxValues = []; //keeps track of the move played in each box
+let boxValues = new Array(9).fill(undefined); //keeps track of the move played in each box
 
 //makes a new empty canvas
 function startNewGame(d = boxSize) {
@@ -37,7 +38,7 @@ function circle(n, d = boxSize) {
   let y = Math.floor((n + 2) / 3) * d - d / 2; // y-coordinate of the center of the circle in the box
 
   ctx.beginPath();
-  ctx.arc(x, y, d / 3, 0, 360);
+  ctx.arc(x, y, d / 3, 0, 2 * Math.PI);
   ctx.stroke();
 }
 // used to add a cross to any box (n)
@@ -72,14 +73,58 @@ function makeMove(boxNumber) {
   if (isCross && boxValues[boxNumber - 1] == undefined) {
     cross(boxNumber);
     isCross = false;
-    boxValues[boxNumber - 1] = "cross";
+    boxValues[boxNumber - 1] = 1;
   } else if (!isCross && boxValues[boxNumber - 1] == undefined) {
     circle(boxNumber);
     isCross = true;
-    boxValues[boxNumber - 1] = "circle";
+    boxValues[boxNumber - 1] = 0;
+  }
+
+  if (isWinner()) {
+    let player = isCross ? "O" : "X";
+    gameStatus.innerText = `${player} has won!`
   }
 }
+//checks if someone won (true) or not (false). ALso checks for draw itself
+function isWinner() {
+    let arr = ["123", "456", "789", "147", "258", "369", "159", "357"];
+  
+    for (let i = 0; i < arr.length; i++) {
+      let sum = 0;
+      for (let j = 0; j < 3; j++) {
+        let index = Number(arr[i].charAt(j)) - 1;
+  
+        if (boxValues[index] == undefined) {
+          sum = -1;
+          break;
+        }
+        sum += boxValues[index];
+      }
+      if (sum == 0 || sum == 3) {
+        return true;
+      }
+    }
 
+    
+    //check for draw
+
+    let isDraw = true
+
+    for (let p = 0; p < boxValues.length; p++) {
+        if (boxValues[p] == undefined) {
+            isDraw = false;
+            break
+        }
+    }
+
+    if (isDraw) {
+        gameStatus.innerText = "Draw!"
+    }
+  
+    return false;
+
+}
+  
 //Attach the keys to play the moves and call makeMove()
 window.addEventListener("keypress", (e) => {
   let box;
