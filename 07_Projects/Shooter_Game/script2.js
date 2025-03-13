@@ -1,45 +1,41 @@
 const canvas = document.getElementById("gameArea");
 const bgctx = canvas.getContext("2d");
-const player1_score_element = document.getElementById("player1_score");
-const player1_speed_element = document.getElementById("player1_speed");
-
-const player2_score_element = document.getElementById("player2_score");
-const player2_speed_element = document.getElementById("player2_speed");
-
-const ctx1 = document.getElementById("player1").getContext("2d");
-const ctx2 = document.getElementById("player2").getContext("2d");
-
 const canvasColor = "grey";
-const player1_color = "red";
-const player2_color = "blue";
 const foodColor = "#ff3131";
-let time_period1 = 200; //time to move a unit for the snake(more the value, lesser the speed)
-let time_period2 = 200;
 const playgroundSize = 500; //size of the playground
 const w = 20; //width of a unit of snake
+
+const ctx1 = document.getElementById("player1").getContext("2d");
+const player1_score_element = document.getElementById("player1_score");
+const player1_speed_element = document.getElementById("player1_speed");
+const player1_color = "red";
+let time_period1 = 200; //time to move a unit for the snake(more the value, lesser the speed)
 let score1 = 0; //keeps tracks of the score of the player1
-let score2 = 0;
-
 let speed1 = (w / time_period1) * 1000;
-let speed2 = (w / time_period2) * 1000;
 let movement1; //tracks current movement of player 1
-let movement2; //tracks current movement of player 2
-
 //Player coordinates
 let p1X = 0;
 let p1Y = playgroundSize / 2;
-
-let p2X = playgroundSize - w;
-let p2Y = playgroundSize / 2;
-
 player1_speed_element.innerText = Math.floor(speed1);
-player2_speed_element.innerText = Math.floor(speed2);
-
-//add initial players body
 ctx1.fillStyle = player1_color;
 ctx1.fillRect(0, playgroundSize / 2, w, w);
+const bullet1_color = "yellow";
+
+const ctx2 = document.getElementById("player2").getContext("2d");
+const player2_score_element = document.getElementById("player2_score");
+const player2_speed_element = document.getElementById("player2_speed");
+const player2_color = "blue";
+let time_period2 = 200;
+let score2 = 0;
+let speed2 = (w / time_period2) * 1000;
+let movement2; //tracks current movement of player 2
+let p2X = playgroundSize - w;
+let p2Y = playgroundSize / 2;
+player2_speed_element.innerText = Math.floor(speed2);
+//add initial players body
 ctx2.fillStyle = player2_color;
 ctx2.fillRect(playgroundSize - w, playgroundSize / 2, w, w);
+const bullet2_color = "pink";
 
 //creates the playground (canvas)
 function startNewGame(d = playgroundSize) {
@@ -58,35 +54,31 @@ function startNewGame(d = playgroundSize) {
 }
 //shoots the bullet in positive x direction
 function shoot1(p, q) {
-
-  const gun_shoot = setInterval (()=> {
+  const gun_shoot = setInterval(() => {
     p += w / 2.5;
     ctx1.clearRect(p - w / 2.5, q, w / 2.5, w / 2.5);
-    ctx1.fillStyle = "yellow";
+    ctx1.fillStyle = bullet1_color;
     ctx1.fillRect(p, q, w / 2.5, w / 2.5);
-  
+
     if (p >= playgroundSize) {
       clearInterval(gun_shoot);
       console.log("Cleared!");
     }
-  }, time_period1/4)
-  
+  }, time_period1 / 4);
 }
 
 function shoot2(p, q) {
-
-  const gun_shoot2 = setInterval (()=> {
+  const gun_shoot2 = setInterval(() => {
     p -= w / 2.5;
     ctx2.clearRect(p + w / 2.5, q, w / 2.5, w / 2.5);
-    ctx2.fillStyle = "yellow";
+    ctx2.fillStyle = bullet2_color;
     ctx2.fillRect(p, q, w / 2.5, w / 2.5);
-  
-    if (p < -w/2.5) {
+
+    if (p < -w / 2.5) {
       clearInterval(gun_shoot2);
       console.log("Cleared shoot 2!");
     }
-  }, time_period1/4)
-  
+  }, time_period1 / 4);
 }
 
 function move_xP(t) {
@@ -199,22 +191,19 @@ window.addEventListener("keydown", (e) => {
       clearInterval(movement2);
       break;
 
-      //for player 1 shoot1
+    //for player 1 shoot1
     case "e":
-      case "E":      
-      shoot1 (p1X + w, p1Y + w / 2.5);
-      score1 -= 5
-      player1_score_element.innerText = score1
+    case "E":
+      shoot1(p1X + w, p1Y + w / 2.5);
+      score1 -= 5;
+      player1_score_element.innerText = score1;
       break;
 
-      case "0":
-        shoot2 (p2X-w, p2Y+ w/2.5) //!
-        score2 -= 5
-        player2_score_element.innerText = score2
-        break;
-
-
-      //for player
+    case "0":
+      shoot2(p2X - w, p2Y + w / 2.5);
+      score2 -= 5;
+      player2_score_element.innerText = score2;
+      break;
   }
 });
 
@@ -253,5 +242,3 @@ window.addEventListener("keydown", (e) => {
 
 startNewGame();
 // scoreUp();
-
-
