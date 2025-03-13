@@ -1,12 +1,11 @@
-const arena_size = 500; //size of the playground
+const arena_size = 500; //size of the arena (canvas)
 const player_size = 20; //size of the players
-let time_left = 61;
+let time_left = 60;
 
 const player1 = {
   color: "red",
   time_period: 150,
   score: 100,
-  movement: undefined,
   X: 0,
   Y: arena_size / 2,
   bullet_color: "#590707",
@@ -16,7 +15,6 @@ const player2 = {
   color: "blue",
   time_period: 150,
   score: 100,
-  movement: undefined,
   X: arena_size - player_size,
   Y: arena_size / 2,
   bullet_color: "#361d75",
@@ -32,21 +30,10 @@ const foodColor = "#ff3131";
 //For Player 1
 const ctx1 = document.getElementById("player1").getContext("2d");
 const player1_score_element = document.getElementById("player1_score");
-player1_score_element.innerText = player1.score;
-ctx1.fillStyle = player1.color;
-ctx1.fillRect(0, arena_size / 2, player_size, player_size);
 
 //For Player 2
 const ctx2 = document.getElementById("player2").getContext("2d");
 const player2_score_element = document.getElementById("player2_score");
-player2_score_element.innerText = player2.score;
-ctx2.fillStyle = player2.color;
-ctx2.fillRect(
-  arena_size - player_size,
-  arena_size / 2,
-  player_size,
-  player_size
-);
 
 //creates the playground (canvas)
 function startNewGame(d = arena_size) {
@@ -66,6 +53,21 @@ function startNewGame(d = arena_size) {
   bgctx.moveTo(arena_size / 2, 0);
   bgctx.lineTo(arena_size / 2, arena_size);
   bgctx.stroke();
+
+  time_left_elem.innerText = time_left
+
+  player1_score_element.innerText = player1.score;
+  ctx1.fillStyle = player1.color;
+  ctx1.fillRect(0, arena_size / 2, player_size, player_size);
+
+  player2_score_element.innerText = player2.score;
+  ctx2.fillStyle = player2.color;
+  ctx2.fillRect(
+    arena_size - player_size,
+    arena_size / 2,
+    player_size,
+    player_size
+  );
 }
 //shoots the bullet in positive x direction
 function shoot1(p, q) {
@@ -225,76 +227,6 @@ function move_yN(t) {
     ctx2.fillRect(player2.X, player2.Y, player_size, player_size);
   }
 }
-//Adding controls to the game
-window.addEventListener("keydown", (e) => {
-  e.preventDefault();
-
-  switch (e.key) {
-    case "ArrowLeft":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_xN, player2.time_period, 2);
-      break;
-
-    case "ArrowRight":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_xP, player2.time_period, 2);
-      break;
-
-    case "ArrowUp":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_yP, player2.time_period, 2);
-      break;
-
-    case "ArrowDown":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_yN, player2.time_period, 2);
-      break;
-
-    case "A":
-    case "a":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_xN, player1.time_period, 1);
-      break;
-
-    case "D":
-    case "d":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_xP, player1.time_period, 1);
-      break;
-
-    case "W":
-    case "w":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_yP, player1.time_period, 1);
-      break;
-
-    case "S":
-    case "s":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_yN, player1.time_period, 1);
-      break;
-
-    case " ":
-      clearInterval(player1.movement);
-      clearInterval(player2.movement);
-      break;
-
-    //for player 1 shoot1
-    case "e":
-    case "E":
-      shoot1(player1.X + player_size, player1.Y + player_size / 2.5);
-
-      break;
-
-    case "0":
-      shoot2(player2.X - player_size, player2.Y + player_size / 2.5);
-
-      break;
-  }
-});
-
-startNewGame();
-
 function hit_detection(p, q, player_number) {
   if (
     player_number == 1 &&
@@ -310,19 +242,58 @@ function hit_detection(p, q, player_number) {
     return true;
 }
 
-// function check_winner() {
-//   setTimeout(() => {
-//     window.removeEventListener("keydown", check_winner);
-//     if (player1.score > player2.score) {
-//       alert("Player 1 won!");
-//     } else if (player1.score < player2.score) {
-//       alert("Player 2 won!");
-//     } else {
-//       alert("Draw!");
-//     }
-//   }, 5000);
-// }
-// window.addEventListener("keydown", check_winner);
+//Adding controls to the game
+window.addEventListener("keydown", (e) => {
+  e.preventDefault();
+
+  switch (e.key) {
+    case "ArrowLeft":
+      move_xN(2);
+      break;
+
+    case "ArrowRight":
+      move_xP(2);
+      break;
+
+    case "ArrowUp":
+      move_yP(2);
+      break;
+
+    case "ArrowDown":
+      move_yN(2);
+      break;
+
+    case "A":
+    case "a":
+      move_xN(1);
+      break;
+
+    case "D":
+    case "d":
+      move_xP(1);
+      break;
+
+    case "W":
+    case "w":
+      move_yP(1);
+      break;
+
+    case "S":
+    case "s":
+      move_yN(1);
+      break;
+
+    //for player 1 shoot1
+    case "e":
+    case "E":
+      shoot1(player1.X + player_size, player1.Y + player_size / 2.5);
+      break;
+
+    case "0":
+      shoot2(player2.X - player_size, player2.Y + player_size / 2.5);
+      break;
+  }
+});
 
 const check_winner = setInterval(() => {
   console.log(time_left);
@@ -332,6 +303,10 @@ const check_winner = setInterval(() => {
     clearInterval(check_winner);
     if (player1.score > player2.score) alert("Player 1 won!");
     else if (player1.score < player2.score) alert("Player 2 won!");
-    else alert("Draw!");
+    else {
+      alert("Draw!");
+    }
   }
 }, 1000);
+
+startNewGame();
