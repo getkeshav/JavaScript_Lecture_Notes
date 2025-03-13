@@ -40,7 +40,10 @@ body {
     top: 20px;
     right: 20px;
   }
-  
+  #timeLeft {
+    position: absolute;
+    top: 20px;
+  }
   /* Basic styling for headings and paragraphs */
   h2 {
     margin: 0;

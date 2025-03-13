@@ -1,5 +1,6 @@
 const arena_size = 500; //size of the playground
 const player_size = 20; //size of the players
+let time_left = 61;
 
 const player1 = {
   color: "red",
@@ -22,6 +23,7 @@ const player2 = {
 };
 
 //General
+const time_left_elem = document.getElementById("timeLeft");
 const canvas = document.getElementById("gameArea");
 const bgctx = canvas.getContext("2d");
 const canvasColor = "#59f06d";
@@ -93,7 +95,6 @@ function shoot1(p, q) {
 
     if (p >= arena_size) {
       clearInterval(gun_shoot);
-      console.log("Cleared!");
     }
   }, player1.time_period / 4);
 }
@@ -308,3 +309,29 @@ function hit_detection(p, q, player_number) {
   )
     return true;
 }
+
+// function check_winner() {
+//   setTimeout(() => {
+//     window.removeEventListener("keydown", check_winner);
+//     if (player1.score > player2.score) {
+//       alert("Player 1 won!");
+//     } else if (player1.score < player2.score) {
+//       alert("Player 2 won!");
+//     } else {
+//       alert("Draw!");
+//     }
+//   }, 5000);
+// }
+// window.addEventListener("keydown", check_winner);
+
+const check_winner = setInterval(() => {
+  console.log(time_left);
+  time_left--;
+  time_left_elem.innerText = time_left;
+  if (time_left == -1) {
+    clearInterval(check_winner);
+    if (player1.score > player2.score) alert("Player 1 won!");
+    else if (player1.score < player2.score) alert("Player 2 won!");
+    else alert("Draw!");
+  }
+}, 1000);
