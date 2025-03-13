@@ -1,14 +1,42 @@
+/* General Page Styling */
 body {
-    background-color: black;
-}
-#snake {
-    margin-top: 10vh;
-    margin-left: 70vh;
-}
-#gameArea {
-    margin-top: 10vh;
-    margin-left: 70vh;
-}
-.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #222; /* Dark theme for contrast */
     color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Game Area Container */
+.canvas {
+    position: relative; /* Ensures the canvases stay aligned */
+    width: 500px;
+    height: 500px;
+    border: 5px solid #fff; /* White border for better visibility */
+    background-color: black; /* Fallback background */
+}
+
+/* Canvas Layers */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+}
+
+/* Scoreboard - Top Left */
+.score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: left;
 }
