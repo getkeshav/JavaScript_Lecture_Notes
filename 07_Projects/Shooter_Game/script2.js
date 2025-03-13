@@ -6,9 +6,6 @@ const player1_speed_element = document.getElementById("player1_speed");
 const player2_score_element = document.getElementById("player2_score");
 const player2_speed_element = document.getElementById("player2_speed");
 
-let movement_gun;
-let p, q;
-
 const ctx1 = document.getElementById("player1").getContext("2d");
 const ctx2 = document.getElementById("player2").getContext("2d");
 
@@ -59,6 +56,39 @@ function startNewGame(d = playgroundSize) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 }
+//shoots the bullet in positive x direction
+function shoot1(p, q) {
+
+  const gun_shoot = setInterval (()=> {
+    p += w / 2.5;
+    ctx1.clearRect(p - w / 2.5, q, w / 2.5, w / 2.5);
+    ctx1.fillStyle = "yellow";
+    ctx1.fillRect(p, q, w / 2.5, w / 2.5);
+  
+    if (p >= playgroundSize) {
+      clearInterval(gun_shoot);
+      console.log("Cleared!");
+    }
+  }, time_period1/4)
+  
+}
+
+function shoot2(p, q) {
+
+  const gun_shoot2 = setInterval (()=> {
+    p -= w / 2.5;
+    ctx2.clearRect(p + w / 2.5, q, w / 2.5, w / 2.5);
+    ctx2.fillStyle = "yellow";
+    ctx2.fillRect(p, q, w / 2.5, w / 2.5);
+  
+    if (p < -w/2.5) {
+      clearInterval(gun_shoot2);
+      console.log("Cleared shoot 2!");
+    }
+  }, time_period1/4)
+  
+}
+
 function move_xP(t) {
   if (t == 1 && p1X + w <= playgroundSize - w) {
     p1X += w; // Update position first
@@ -169,13 +199,22 @@ window.addEventListener("keydown", (e) => {
       clearInterval(movement2);
       break;
 
-    case "p":
-      clearInterval(movement_gun)
+      //for player 1 shoot1
+    case "e":
+      case "E":      
+      shoot1 (p1X + w, p1Y + w / 2.5);
+      score1 -= 5
+      player1_score_element.innerText = score1
+      break;
 
-      ctx1.clearRect(p , q, w / 2.5, w / 2.5);
-    p = p1X + w;
-    q = p1Y + w / 2.5;
-      movement_gun = setInterval(shoot, time_period1 / 2)
+      case "0":
+        shoot2 (p2X-w, p2Y+ w/2.5) //!
+        score2 -= 5
+        player2_score_element.innerText = score2
+        break;
+
+
+      //for player
   }
 });
 
@@ -216,14 +255,3 @@ startNewGame();
 // scoreUp();
 
 
-function shoot() {
-  p += w / 2.5;
-  ctx1.clearRect(p - w / 2.5, q, w / 2.5, w / 2.5);
-  ctx1.fillStyle = "yellow";
-  ctx1.fillRect(p, q, w / 2.5, w / 2.5);
-
-  if (p >= playgroundSize) {
-    clearInterval(movement_gun);
-    console.log("Cleared!");
-  }
-}
