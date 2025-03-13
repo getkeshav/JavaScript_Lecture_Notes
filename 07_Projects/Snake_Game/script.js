@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 const canvasColor = "#1a472a";
 const snakeColor = "#4cff4c";
 const foodColor = "#ff3131";
-let time_period = 200; //time to move a unit for the snake(more the value, lesser the speed)
+let time_period = 100; //time to move a unit for the snake(more the value, lesser the speed)
 const playgroundSize = 500; //size of the playground
 const w = 15; //width of a unit of snake
 let score = 0; //keeps tracks of the score of the player
@@ -42,48 +42,48 @@ function startNewGame(d = playgroundSize) {
 
 //moves the snake in positive x direction
 function move_xP() {
+    ctx.clearRect (x, y, w, w)
   ctx.fillStyle = canvasColor;
-  ctx.fillRect(0, 0, w, w);
+  ctx.fillRect (x,y, w, w)
 
-  ctx.fillStyle = snakeColor;
-  ctx.translate(w, 0);
-  ctx.fillRect(0, 0, w, w);
+  ctx.fillStyle = snakeColor
+  ctx.fillRect (x+w,y, w, w)
 
   x += w;
   y += 0;
 }
 //moves the snake in negative x direction
 function move_xN() {
-  ctx.fillStyle = canvasColor;
-  ctx.fillRect(0, 0, w, w);
-
-  ctx.fillStyle = snakeColor;
-  ctx.translate(-w, 0);
-  ctx.fillRect(0, 0, w, w);
+    ctx.clearRect (x, y, w, w)
+    ctx.fillStyle = canvasColor;
+    ctx.fillRect (x,y, w, w)
+  
+    ctx.fillStyle = snakeColor
+    ctx.fillRect (x-w,y, w, w)
 
   x -= w;
   y += 0;
 }
 //moves the snake in positive y direction
 function move_yP() {
-  ctx.fillStyle = canvasColor;
-  ctx.fillRect(0, 0, w, w);
-
-  ctx.fillStyle = snakeColor;
-  ctx.translate(0, -w);
-  ctx.fillRect(0, 0, w, w);
+    ctx.clearRect (x, y, w, w)
+    ctx.fillStyle = canvasColor;
+    ctx.fillRect (x,y, w, w)
+  
+    ctx.fillStyle = snakeColor
+    ctx.fillRect (x,y-w, w, w)
 
   x += 0;
   y -= w;
 }
 //   moves the snake in negative y direction
 function move_yN() {
-  ctx.fillStyle = canvasColor;
-  ctx.fillRect(0, 0, w, w);
-
-  ctx.fillStyle = snakeColor;
-  ctx.translate(0, w);
-  ctx.fillRect(0, 0, w, w);
+    ctx.clearRect (x, y, w, w)
+    ctx.fillStyle = canvasColor;
+    ctx.fillRect (x,y, w, w)
+  
+    ctx.fillStyle = snakeColor
+    ctx.fillRect (x,y+w, w, w)
 
   x += 0;
   y += w;
@@ -131,6 +131,12 @@ function scoreUp(d = playgroundSize) {
   let a = Math.floor(Math.random() * (d/w))*w;
   let b = Math.floor(Math.random() * (d/w))*w;
 
+  //if food appears on the snake itself, respawn the food
+  if (a == x || b == y) {
+    scoreUp()
+    return;
+  }
+
   console.log("Food:", a, b);
 
   //adds food
@@ -147,7 +153,7 @@ function scoreUp(d = playgroundSize) {
       console.log(speed);
       player_speed_element.innerText = Math.floor(speed);
       clearInterval(collision);
-      startNewGame();
+     startNewGame()
       setTimeout (scoreUp, 0)
     }
   }, 10);
