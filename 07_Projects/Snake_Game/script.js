@@ -6,19 +6,23 @@ const ctx = canvas.getContext("2d");
 const canvasColor = "#1a472a";
 const snakeColor = "#4cff4c";
 const foodColor = "#ff3131";
-let time_period = 100; //time to move a unit for the snake(more the value, lesser the speed)
+let time_period = 200; //time to move a unit for the snake(more the value, lesser the speed)
 const playgroundSize = 500; //size of the playground
 const w = 15; //width of a unit of snake
 let score = 0; //keeps tracks of the score of the player
 let speed = (w / time_period) * 1000;
+let movement; //tracks current movement
 
 //snake coordinates
-let x = w / 2;
-let y = w / 2;
+let x = 0;
+let y = 0;
 
 player_speed_element.innerText = Math.floor(speed);
 
-let movement; //tracks current movement
+//add initial snake body
+ctx.fillStyle = snakeColor;
+ctx.fillRect(0, 0, w, w);
+
 
 //creates the playground (canvas and snake)
 function startNewGame(d = playgroundSize) {
@@ -35,9 +39,7 @@ function startNewGame(d = playgroundSize) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 }
-//add initial snake body
-ctx.fillStyle = snakeColor;
-ctx.fillRect(0, 0, w, w);
+
 //moves the snake in positive x direction
 function move_xP() {
   ctx.fillStyle = canvasColor;
@@ -124,20 +126,19 @@ window.addEventListener("keydown", (e) => {
       break;
   }
 });
-
+//Adds food and scores up if eaten
 function scoreUp(d = playgroundSize) {
-  let a = Math.floor(Math.random() * d);
-  let b = Math.floor(Math.random() * d);
+  let a = Math.floor(Math.random() * (d/w))*w;
+  let b = Math.floor(Math.random() * (d/w))*w;
 
   console.log("Food:", a, b);
 
   //adds food
   bgctx.fillStyle = foodColor;
-  bgctx.fillRect(a, b, w / 3, w / 3);
+  bgctx.fillRect(a, b, w, w);
 
-  //! Check if conditiopn for collision
   const collision = setInterval(() => {
-    if (Math.abs(x - a) <= w && Math.abs(y - b) <= w) {
+    if (x == a && y == b) {
       console.log("Collision!");
       score += 10;
       player_score_element.innerText = score;
