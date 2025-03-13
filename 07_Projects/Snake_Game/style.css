@@ -1,7 +1,10 @@
 body {
-    background-color: black;
+    /* background-color: black; */
 }
-
+#snake {
+    margin-top: 10vh;
+    margin-left: 70vh;
+}
 #gameArea {
     margin-top: 10vh;
     margin-left: 70vh;
