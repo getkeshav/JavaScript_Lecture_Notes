@@ -1,12 +1,15 @@
-const canvas = document.getElementById("gameArea"); //selects the canvas element
+const canvas = document.getElementById("gameArea")
 const ctx = canvas.getContext("2d"); //creates a 2d context for the canavas
 const gameStatus = document.getElementById("status");
 const boxSize = 200; //initializes the size of the grid (box)
 let isCross = false; //keeps track of the upcoming move (cross or circle)
 let boxValues = new Array(9).fill(undefined); //keeps track of the move played in each box
+const ctx2 = document.getElementById("controls").getContext("2d")
+const ctx3 = document.getElementById("nextMove").getContext("2d")
 
 //makes a new empty canvas
 function startNewGame(d = boxSize) {
+    ctx.clearRect (0,0,1000,1000) //resets the canvas before starting a new game
   if (!canvas.getContext) {
     alert("Canvas not supported in your browser!");
     return;
@@ -30,6 +33,10 @@ function startNewGame(d = boxSize) {
   ctx.moveTo(2 * d, 0);
   ctx.lineTo(2 * d, 3 * d);
   ctx.stroke();
+
+  ctx3.beginPath();
+ctx3.arc(50, 50, 30, 0, 2 * Math.PI);
+ctx3.stroke();
 }
 // used to add a circle to any box (n)
 function circle(n, d = boxSize) {
@@ -124,7 +131,6 @@ function isWinner() {
     return false;
 
 }
-  
 //Attach the keys to play the moves and call makeMove()
 window.addEventListener("keypress", (e) => {
   let box;
@@ -135,4 +141,28 @@ window.addEventListener("keypress", (e) => {
   makeMove(box);
 });
 
-startNewGame(boxSize);
+function gameControls (d = boxSize/4) {
+  
+  ctx2.beginPath(); //starts a new shape path
+  ctx2.moveTo(0, d); //goes to an initial point
+  ctx2.lineTo(3 * d, d); //moves to another point for line
+  ctx2.stroke(); //strokes between the two points
+
+  ctx2.beginPath();
+  ctx2.moveTo(0, 2 * d);
+  ctx2.lineTo(3 * d, 2 * d);
+  ctx2.stroke();
+
+  ctx2.beginPath();
+  ctx2.moveTo(d, 0);
+  ctx2.lineTo(d, 3 * d);
+  ctx2.stroke();
+
+  ctx2.beginPath();
+  ctx2.moveTo(2 * d, 0);
+  ctx2.lineTo(2 * d, 3 * d);
+  ctx2.stroke();
+}
+
+startNewGame();
+gameControls()
