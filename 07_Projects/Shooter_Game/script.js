@@ -1,30 +1,54 @@
-const bgctx = document.getElementById("gameArea").getContext("2d");
-const player_score_element = document.getElementById("player_score");
-const player_speed_element = document.getElementById("player_speed");
-const canvas = document.getElementById("snake");
-const ctx = canvas.getContext("2d");
-const canvasColor = "#1a472a";
-const snakeColor = "#4cff4c";
-const foodColor = "#ff3131";
-let time_period = 100; //time to move a unit for the snake(more the value, lesser the speed)
 const playgroundSize = 500; //size of the playground
-const w = 15; //width of a unit of snake
-let score = 0; //keeps tracks of the score of the player
-let speed = (w / time_period) * 1000;
-let movement; //tracks current movement
+const w = 20; //width of a unit of snake
 
-//snake coordinates
-let x = 0;
-let y = 0;
+const player1 = {
+  color: "red",
+  time_period: 200,
+  score: 0,
+  speed: (w / this.time_period) * 1000,
+  movement : undefined,
+  X: 0,
+  Y: playgroundSize / 2,
+  bullet_color: "yellow",
+};
 
-player_speed_element.innerText = Math.floor(speed);
+const player2 = {
+  color: "blue",
+  time_period: 200,
+  score: 0,
+  speed: (w / this.time_period) * 1000,
+  movement : undefined,
+  X: playgroundSize - w,
+  Y: playgroundSize / 2,
+  bullet_color: "pink",
+};
 
-//add initial snake body
-ctx.fillStyle = snakeColor;
-ctx.fillRect(0, 0, w, w);
+//General
+const canvas = document.getElementById("gameArea");
+const bgctx = canvas.getContext("2d");
+const canvasColor = "grey";
+const foodColor = "#ff3131";
 
 
-//creates the playground (canvas and snake)
+//For Player 1
+const ctx1 = document.getElementById("player1").getContext("2d");
+const player1_score_element = document.getElementById("player1_score");
+const player1_speed_element = document.getElementById("player1_speed");
+player1_speed_element.innerText = Math.floor(player1.speed);
+ctx1.fillStyle = player1.color;
+ctx1.fillRect(0, playgroundSize / 2, w, w);
+
+//For Player 2
+const ctx2 = document.getElementById("player2").getContext("2d");
+const player2_score_element = document.getElementById("player2_score");
+const player2_speed_element = document.getElementById("player2_speed");
+player2_speed_element.innerText = Math.floor(player2.speed);
+//add initial players body
+ctx2.fillStyle = player2.color;
+ctx2.fillRect(playgroundSize - w, playgroundSize / 2, w, w);
+
+
+//creates the playground (canvas)
 function startNewGame(d = playgroundSize) {
   if (!canvas.getContext) {
     alert("Canvas not supported in your browser!");
@@ -39,125 +63,192 @@ function startNewGame(d = playgroundSize) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 }
+//shoots the bullet in positive x direction
+function shoot1(p, q) {
+  const gun_shoot = setInterval(() => {
+    p += w / 2.5;
+    ctx1.clearRect(p - w / 2.5, q, w / 2.5, w / 2.5);
+    ctx1.fillStyle = player1.bullet_color;
+    ctx1.fillRect(p, q, w / 2.5, w / 2.5);
 
-//moves the snake in positive x direction
-function move_xP() {
-    ctx.clearRect (x, y, w, w)
-  ctx.fillStyle = canvasColor;
-  ctx.fillRect (x,y, w, w)
-
-  ctx.fillStyle = snakeColor
-  ctx.fillRect (x+w,y, w, w)
-
-  x += w;
-  y += 0;
+    if (p >= playgroundSize) {
+      clearInterval(gun_shoot);
+      console.log("Cleared!");
+    }
+  }, player1.time_period / 4);
 }
-//moves the snake in negative x direction
-function move_xN() {
-    ctx.clearRect (x, y, w, w)
-    ctx.fillStyle = canvasColor;
-    ctx.fillRect (x,y, w, w)
-  
-    ctx.fillStyle = snakeColor
-    ctx.fillRect (x-w,y, w, w)
+function shoot2(p, q) {
+  const gun_shoot2 = setInterval(() => {
+    p -= w / 2.5;
+    ctx2.clearRect(p + w / 2.5, q, w / 2.5, w / 2.5);
+    ctx2.fillStyle = player2.bullet_color;
+    ctx2.fillRect(p, q, w / 2.5, w / 2.5);
 
-  x -= w;
-  y += 0;
+    if (p < -w / 2.5) {
+      clearInterval(gun_shoot2);
+      console.log("Cleared shoot 2!");
+    }
+  }, player1.time_period / 4);
 }
-//moves the snake in positive y direction
-function move_yP() {
-    ctx.clearRect (x, y, w, w)
-    ctx.fillStyle = canvasColor;
-    ctx.fillRect (x,y, w, w)
-  
-    ctx.fillStyle = snakeColor
-    ctx.fillRect (x,y-w, w, w)
 
-  x += 0;
-  y -= w;
+function move_xP(t) {
+  if (t == 1 && player1.X + w <= playgroundSize - w) {
+    player1.X += w; // Update position first
+    ctx1.clearRect(player1.X - w, player1.Y, w, w);
+    ctx1.fillStyle = player1.color;
+    ctx1.fillRect(player1.X, player1.Y, w, w);
+  } else if (t == 2 && player2.X + w <= playgroundSize - w) {
+    player2.X += w;
+    ctx2.clearRect(player2.X - w, player2.Y, w, w);
+    ctx2.fillStyle = player2.color;
+    ctx2.fillRect(player2.X, player2.Y, w, w);
+  }
 }
-//   moves the snake in negative y direction
-function move_yN() {
-    ctx.clearRect (x, y, w, w)
-    ctx.fillStyle = canvasColor;
-    ctx.fillRect (x,y, w, w)
-  
-    ctx.fillStyle = snakeColor
-    ctx.fillRect (x,y+w, w, w)
 
-  x += 0;
-  y += w;
+function move_xN(t) {
+  if (t == 1 && player1.X - w >= 0) {
+    player1.X -= w;
+    ctx1.clearRect(player1.X + w, player1.Y, w, w);
+    ctx1.fillStyle = player1.color;
+    ctx1.fillRect(player1.X, player1.Y, w, w);
+  } else if (t == 2 && player2.X - w >= 0) {
+    player2.X -= w;
+    ctx2.clearRect(player2.X + w, player2.Y, w, w);
+    ctx2.fillStyle = player2.color;
+    ctx2.fillRect(player2.X, player2.Y, w, w);
+  }
 }
+
+function move_yP(t) {
+  if (t == 1 && player1.Y - w >= 0) {
+    player1.Y -= w;
+    ctx1.clearRect(player1.X, player1.Y + w, w, w);
+    ctx1.fillStyle = player1.color;
+    ctx1.fillRect(player1.X, player1.Y, w, w);
+  } else if (t == 2 && player2.Y - w >= 0) {
+    player2.Y -= w;
+    ctx2.clearRect(player2.X, player2.Y + w, w, w);
+    ctx2.fillStyle = player2.color;
+    ctx2.fillRect(player2.X, player2.Y, w, w);
+  }
+}
+
+function move_yN(t) {
+  if (t == 1 && player1.Y + w <= playgroundSize - w) {
+    player1.Y += w;
+    ctx1.clearRect(player1.X, player1.Y - w, w, w);
+    ctx1.fillStyle = player1.color;
+    ctx1.fillRect(player1.X, player1.Y, w, w);
+  } else if (t == 2 && player2.Y + w <= playgroundSize - w) {
+    player2.Y += w;
+    ctx2.clearRect(player2.X, player2.Y - w, w, w);
+    ctx2.fillStyle = player2.color;
+    ctx2.fillRect(player2.X, player2.Y, w, w);
+  }
+}
+
 //Adding controls to the game
 window.addEventListener("keydown", (e) => {
   e.preventDefault();
 
   switch (e.key) {
     case "ArrowLeft":
-    case "A":
-    case "a":
-      clearInterval(movement);
-      movement = setInterval(move_xN, time_period);
+      clearInterval(player2.movement);
+      player2.movement = setInterval(move_xN, player2.time_period, 2);
       break;
 
     case "ArrowRight":
-    case "D":
-    case "d":
-      clearInterval(movement);
-      movement = setInterval(move_xP, time_period);
+      clearInterval(player2.movement);
+      player2.movement = setInterval(move_xP, player2.time_period, 2);
       break;
 
     case "ArrowUp":
-    case "W":
-    case "w":
-      clearInterval(movement);
-      movement = setInterval(move_yP, time_period);
+      clearInterval(player2.movement);
+      player2.movement = setInterval(move_yP, player2.time_period, 2);
       break;
 
     case "ArrowDown":
+      clearInterval(player2.movement);
+      player2.movement = setInterval(move_yN, player2.time_period, 2);
+      break;
+
+    case "A":
+    case "a":
+      clearInterval(player1.movement);
+      player1.movement = setInterval(move_xN, player1.time_period, 1);
+      break;
+
+    case "D":
+    case "d":
+      clearInterval(player1.movement);
+      player1.movement = setInterval(move_xP, player1.time_period, 1);
+      break;
+
+    case "W":
+    case "w":
+      clearInterval(player1.movement);
+      player1.movement = setInterval(move_yP, player1.time_period, 1);
+      break;
+
     case "S":
     case "s":
-      clearInterval(movement);
-      movement = setInterval(move_yN, time_period);
+      clearInterval(player1.movement);
+      player1.movement = setInterval(move_yN, player1.time_period, 1);
       break;
 
     case " ":
-      clearInterval(movement);
+      clearInterval(player1.movement);
+      clearInterval(player2.movement);
+      break;
+
+    //for player 1 shoot1
+    case "e":
+    case "E":
+      shoot1(player1.X + w, player1.Y + w / 2.5);
+      player1.score -= 5;
+      player1_score_element.innerText = player1.score;
+      break;
+
+    case "0":
+      shoot2(player2.X - w, player2.Y + w / 2.5);
+      player2.score -= 5;
+      player2_score_element.innerText = player2.score;
       break;
   }
 });
-//Adds food and scores up if eaten
-function scoreUp(d = playgroundSize) {
-  let a = Math.floor(Math.random() * (d/w))*w;
-  let b = Math.floor(Math.random() * (d/w))*w;
 
-  //if food appears on the snake itself, respawn the food
-  if (a == x || b == y) {
-    scoreUp()
-    return;
-  }
+// //Adds food and scores up if eaten
+// function scoreUp(d = playgroundSize) {
+//   let a = Math.floor(Math.random() * (d / w)) * w;
+//   let b = Math.floor(Math.random() * (d / w)) * w;
 
-  console.log("Food:", a, b);
+//   //if food appears on the snake itself, respawn the food
+//   if (a == x || b == y) {
+//     scoreUp();
+//     return;
+//   }
 
-  //adds food
-  bgctx.fillStyle = foodColor;
-  bgctx.fillRect(a, b, w, w);
+//   console.log("Food:", a, b);
 
-  const collision = setInterval(() => {
-    if (x == a && y == b) {
-      console.log("Collision!");
-      score += 10;
-      player_score_element.innerText = score;
-      time_period -= 5;
-      speed = (w / time_period) * 1000;
-      console.log(speed);
-      player_speed_element.innerText = Math.floor(speed);
-      clearInterval(collision);
-     startNewGame()
-      setTimeout (scoreUp, 0)
-    }
-  }, 10);
-}
+//   //adds food
+//   bgctx.fillStyle = foodColor;
+//   bgctx.fillRect(a, b, w, w);
+
+//   const collision = setInterval(() => {
+//     if (x == a && y == b) {
+//       console.log("Collision!");
+//       score += 10;
+//       player_score_element.innerText = score;
+//       time_period -= 5;
+//       speed = (w / time_period) * 1000;
+//       console.log(speed);
+//       player_speed_element.innerText = Math.floor(speed);
+//       clearInterval(collision);
+//       startNewGame();
+//       setTimeout(scoreUp, 0);
+//     }
+//   }, 10);
+// }
 
 startNewGame();
-scoreUp();
+// scoreUp();
