@@ -1,42 +1,53 @@
-/* General Page Styling */
+/* Dark themed background and overall styling */
 body {
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    min-height: 100vh;
+    /* Using flex to center the canvas container */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #222; /* Dark theme for contrast */
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-}
-
-/* Game Area Container */
-.canvas {
-    position: relative; /* Ensures the canvases stay aligned */
+  }
+  
+  /* Container for the canvases */
+  .canvas {
+    position: relative;
     width: 500px;
     height: 500px;
-    border: 5px solid #fff; /* White border for better visibility */
-    background-color: black; /* Fallback background */
-}
-
-/* Canvas Layers */
-canvas {
+  }
+  
+  /* Ensure all canvas elements are layered on top of one another */
+  .canvas canvas {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; 
-    height: 100%;
-}
-
-/* Scoreboard - Top Left */
-.score {
+  }
+  
+  /* Position Player 1 details on the left side (vertically centered) */
+  .player1-details {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 18px;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-align: left;
-}
+    top: 20px;
+    left: 20px;
+  }
+  
+  /* Position Player 2 details on the top right */
+  .player2-details {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  /* Basic styling for headings and paragraphs */
+  h2 {
+    margin: 0;
+    padding: 5px 0;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  

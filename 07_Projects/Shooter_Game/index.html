@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shooter Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shooter Game</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="canvas">
-    <canvas id="gameArea" height="1000" width="1000"></canvas>
-    <canvas id="player1" height="1000" width="1000"></canvas>
-    <canvas id="player2" height="1000" width="1000"></canvas>
-</div>
-<div>
+  <div class="canvas">
+    <canvas id="gameArea" height="500" width="500"></canvas>
+    <canvas id="player1" height="500" width="500"></canvas>
+    <canvas id="player2" height="500" width="500"></canvas>
+  </div>
+  
+  <div class="player1-details">
+    <h2 id="player1_name">Player 1</h2>
     <p>Score: <span id="player1_score">0</span></p>
     <p>Speed: <span id="player1_speed"></span></p>
-</div>
-<div>
+  </div>
+  
+  <div class="player2-details">
+    <h2 id="player2_name">Player 2</h2>
     <p>Score: <span id="player2_score">0</span></p>
     <p>Speed: <span id="player2_speed"></span></p>
-</div>
+  </div>
+
+  <script src="script2.js"></script>
 </body>
-<script src="script2.js"></script>
 </html>

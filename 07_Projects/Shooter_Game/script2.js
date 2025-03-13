@@ -10,12 +10,12 @@ const player2_speed_element = document.getElementById("player2_speed");
 const ctx1 = document.getElementById("player1").getContext("2d");
 const ctx2 = document.getElementById("player2").getContext("2d");
 
-const canvasColor = "#1a472a";
-const player1_color = "#4cff4c";
-const player2_color = "pink";
+const canvasColor = "grey";
+const player1_color = "red";
+const player2_color = "blue";
 const foodColor = "#ff3131";
 let time_period = 200; //time to move a unit for the snake(more the value, lesser the speed)
-const playgroundSize = 1000; //size of the playground
+const playgroundSize = 500; //size of the playground
 const w = 20; //width of a unit of snake
 let score1 = 0; //keeps tracks of the score of the player1
 let score2 = 0;
@@ -56,104 +56,62 @@ function startNewGame(d = playgroundSize) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 }
-
-//moves the player in positive x direction
 function move_xP(t) {
-  //for player 1
-  if (t == 1) {
-    ctx1.clearRect(p1X, p1Y, w, w);
-    ctx1.fillStyle = canvasColor;
-    ctx1.fillRect(p1X, p1Y, w, w);
-
+  if (t == 1 && p1X+w <= playgroundSize-w) {
+    p1X += w;  // Update position first
+    ctx1.clearRect(p1X - w, p1Y, w, w); 
     ctx1.fillStyle = player1_color;
-    ctx1.fillRect(p1X + w, p1Y, w, w);
-
-    p1X += w;
-    p1Y += 0;
-  } else if (t == 2) {
-    ctx2.clearRect(p2X, p2Y, w, w);
-    ctx2.fillStyle = canvasColor;
-    ctx2.fillRect(p2X, p2Y, w, w);
-
-    ctx2.fillStyle = player2_color;
-    ctx2.fillRect(p2X + w, p2Y, w, w);
-
+    ctx1.fillRect(p1X, p1Y, w, w);
+  } else if (t == 2 && p2X+w <= playgroundSize-w) {
     p2X += w;
-    p2Y += 0;
+    ctx2.clearRect(p2X - w, p2Y, w, w);
+    ctx2.fillStyle = player2_color;
+    ctx2.fillRect(p2X, p2Y, w, w);
   }
 }
-//moves the snake in negative x direction
+
 function move_xN(t) {
-  if (t == 1) {
-    ctx1.clearRect(p1X, p1Y, w, w);
-    ctx1.fillStyle = canvasColor;
-    ctx1.fillRect(p1X, p1Y, w, w);
-
-    ctx1.fillStyle = player1_color;
-    ctx1.fillRect(p1X - w, p1Y, w, w);
-
+  if (t == 1 && p1X-w >= 0) {
     p1X -= w;
-    p1Y += 0;
-  } else if (t == 2) {
-    ctx2.clearRect(p2X, p2Y, w, w);
-    ctx2.fillStyle = canvasColor;
-    ctx2.fillRect(p2X, p2Y, w, w);
-
-    ctx2.fillStyle = player2_color;
-    ctx2.fillRect(p2X - w, p2Y, w, w);
-
+    ctx1.clearRect(p1X + w, p1Y, w, w);
+    ctx1.fillStyle = player1_color;
+    ctx1.fillRect(p1X, p1Y, w, w);
+  } else if (t == 2 && p2X-w >= 0) {
     p2X -= w;
-    p2Y += 0;
+    ctx2.clearRect(p2X + w, p2Y, w, w);
+    ctx2.fillStyle = player2_color;
+    ctx2.fillRect(p2X, p2Y, w, w);
   }
 }
-//moves the snake in positive p1Y direction
+
 function move_yP(t) {
-  if (t == 1) {
-    ctx1.clearRect(p1X, p1Y, w, w);
-    ctx1.fillStyle = canvasColor;
-    ctx1.fillRect(p1X, p1Y, w, w);
-
-    ctx1.fillStyle = player1_color;
-    ctx1.fillRect(p1X, p1Y - w, w, w);
-
-    p1X += 0;
+  if (t == 1 && p1Y-w >= 0) {
     p1Y -= w;
-  } else if (t == 2) {
-    ctx2.clearRect(p2X, p2Y, w, w);
-    ctx2.fillStyle = canvasColor;
-    ctx2.fillRect(p2X, p2Y, w, w);
-
-    ctx2.fillStyle = player2_color;
-    ctx2.fillRect(p2X, p2Y - w, w, w);
-
-    p2X += 0;
-    p2Y -= w;
-  }
-}
-//   moves the snake in negative p1Y direction
-function move_yN(t) {
-  if (t == 1) {
-    ctx1.clearRect(p1X, p1Y, w, w);
-    ctx1.fillStyle = canvasColor;
-    ctx1.fillRect(p1X, p1Y, w, w);
-
+    ctx1.clearRect(p1X, p1Y + w, w, w);
     ctx1.fillStyle = player1_color;
-    ctx1.fillRect(p1X, p1Y + w, w, w);
-
-    p1X += 0;
-    p1Y += w;
-  } else if (t == 2) {
-    ctx2.clearRect(p2X, p2Y, w, w);
-    ctx2.fillStyle = canvasColor;
-    ctx2.fillRect(p2X, p2Y, w, w);
-
+    ctx1.fillRect(p1X, p1Y, w, w);
+  } else if (t == 2 && p2Y-w >= 0) {
+    p2Y -= w;
+    ctx2.clearRect(p2X, p2Y + w, w, w);
     ctx2.fillStyle = player2_color;
-    ctx2.fillRect(p2X, p2Y + w, w, w);
-
-    p2X += 0;
-    p2Y += w;
+    ctx2.fillRect(p2X, p2Y, w, w);
   }
 }
+
+function move_yN(t) {
+  if (t == 1 && p1Y+w <= playgroundSize-w) {
+    p1Y += w;
+    ctx1.clearRect(p1X, p1Y - w, w, w);
+    ctx1.fillStyle = player1_color;
+    ctx1.fillRect(p1X, p1Y, w, w);
+  } else if (t == 2 && p2Y+w <= playgroundSize-w) {
+    p2Y += w;
+    ctx2.clearRect(p2X, p2Y - w, w, w);
+    ctx2.fillStyle = player2_color;
+    ctx2.fillRect(p2X, p2Y, w, w);
+  }
+}
+
 
 //Adding controls to the game
 window.addEventListener("keydown", (e) => {
