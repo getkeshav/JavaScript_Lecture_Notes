@@ -104,7 +104,7 @@ function shoot2(p, q) {
 }
 
 function move_xP(t) {
-  if (t == 1 && player1.X + player_size <= arena_size - player_size) {
+  if (t == 1 && (player1.X + player_size) <= (arena_size/2 - player_size)) {
     player1.X += player_size; // Update position first
     ctx1.clearRect(
       player1.X - player_size,
@@ -114,7 +114,7 @@ function move_xP(t) {
     );
     ctx1.fillStyle = player1.color;
     ctx1.fillRect(player1.X, player1.Y, player_size, player_size);
-  } else if (t == 2 && player2.X + player_size <= arena_size - player_size) {
+  } else if (t == 2 && (player2.X + player_size) <= (arena_size - player_size)) {
     player2.X += player_size;
     ctx2.clearRect(
       player2.X - player_size,
@@ -138,7 +138,7 @@ function move_xN(t) {
     );
     ctx1.fillStyle = player1.color;
     ctx1.fillRect(player1.X, player1.Y, player_size, player_size);
-  } else if (t == 2 && player2.X - player_size >= 0) {
+  } else if (t == 2 && player2.X >= arena_size/2+player_size) {
     player2.X -= player_size;
     ctx2.clearRect(
       player2.X + player_size,
@@ -236,6 +236,7 @@ window.addEventListener("keydown", (e) => {
       break;
 
     case "W":
+    case "w":
     case "player_size":
       clearInterval(player1.movement);
       player1.movement = setInterval(move_yP, player1.time_period, 1);
@@ -269,3 +270,8 @@ window.addEventListener("keydown", (e) => {
 });
 
 startNewGame();
+
+
+bgctx.moveTo (arena_size/2, 0)
+bgctx.lineTo (arena_size/2, arena_size)
+bgctx.stroke()
