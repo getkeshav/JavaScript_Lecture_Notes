@@ -1,12 +1,18 @@
 const bgctx = document.getElementById("gameArea").getContext("2d");
+const player_score_element = document.getElementById("player_score")
+const player_speed_element = document.getElementById("player_speed")
 const canvas = document.getElementById("snake");
 const ctx = canvas.getContext("2d");
 const canvasColor = "#c5fcf4";
 const snakeColor = "red";
-let time_period = 300; //time to move a unit for the snake(more the value, lesser the speed)
+let time_period = 200; //time to move a unit for the snake(more the value, lesser the speed)
 const playgroundSize = 500; //size of the playground
 const w = 15; //width of a unit of snake
 let score = 0; //keeps tracks of the score of the player
+let speed = (w/time_period)*1000
+
+player_speed_element.innerText = Math.floor(speed)
+
 
 //snake coordinates
 
@@ -30,13 +36,10 @@ function startNewGame(d = playgroundSize) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 
-  bgctx.save(); //saves the inital state of the canvas
-
+}
   //add initial snake body 
   ctx.fillStyle = snakeColor;
   ctx.fillRect(0, 0, w, w);
-
-}
 //moves the snake in positive x direction
 function move_xP() {
   ctx.fillStyle = canvasColor;
@@ -127,23 +130,27 @@ window.addEventListener("keydown", (e) => {
   //TODO: this increses the score of the player
   function scoreUp(d = playgroundSize) {
 
-    let a = Math.ceil(Math.random()*d)
-    let b = Math.ceil(Math.random()*d)
+    let a = Math.floor(Math.random()*d)
+    let b = Math.floor(Math.random()*d)
 
     //adds food
     bgctx.fillStyle = "blue";
   bgctx.fillRect(a, b, w/4, w/4);
 
-  setInterval (() => {
+  const collision = setInterval (() => {
     if (Math.abs(x-a) <= w && Math.abs(y-b) <= w) {
-        console.log("Intersected!");
+        console.log("Collision!");
+        score += 10;
+        player_score_element.innerText = score
+        time_period -= 5
+        speed = (w/time_period)*1000
+        console.log(speed);
+        player_speed_element.innerText = Math.floor(speed)
+        clearInterval(collision)
+        startNewGame()
+        scoreUp()
     }
-
-
-    // console.log("food: ", a,b);
-    // console.log("snake", x, y);
-}, 1000)
-
+}, 10)
 
   }
   
