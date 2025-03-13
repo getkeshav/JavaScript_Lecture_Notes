@@ -8,6 +8,11 @@ const playgroundSize = 500; //size of the playground
 const w = 15; //width of a unit of snake
 let score = 0; //keeps tracks of the score of the player
 
+//snake coordinates
+
+let x = w/2
+let y = w/2
+
 let movement; //tracks current movement
 
 //creates the playground (canvas and snake)
@@ -31,11 +36,7 @@ function startNewGame(d = playgroundSize) {
   ctx.fillStyle = snakeColor;
   ctx.fillRect(0, 0, w, w);
 
-//   //add initial snake body (player 2)
-//   ctx.fillStyle = snakeColor;
-//   ctx.fillRect(0, 0, w, w);
 }
-
 //moves the snake in positive x direction
 function move_xP() {
   ctx.fillStyle = canvasColor;
@@ -44,6 +45,9 @@ function move_xP() {
   ctx.fillStyle = snakeColor;
   ctx.translate(w, 0);
   ctx.fillRect(0, 0, w, w);
+
+  x += w
+  y += 0
 }
 //moves the snake in negative x direction
 function move_xN() {
@@ -53,6 +57,9 @@ function move_xN() {
   ctx.fillStyle = snakeColor;
   ctx.translate(-w, 0);
   ctx.fillRect(0, 0, w, w);
+
+  x -= w
+  y += 0
 }
 //moves the snake in positive y direction
 function move_yP() {
@@ -62,6 +69,9 @@ function move_yP() {
   ctx.fillStyle = snakeColor;
   ctx.translate(0, -w);
   ctx.fillRect(0, 0, w, w);
+
+  x += 0
+  y -= w
 }
 //   moves the snake in negative y direction
 function move_yN() {
@@ -71,6 +81,9 @@ function move_yN() {
   ctx.fillStyle = snakeColor;
   ctx.translate(0, w);
   ctx.fillRect(0, 0, w, w);
+
+  x += 0
+  y += w
 }
 //Adding controls to the game
 window.addEventListener("keydown", (e) => {
@@ -111,14 +124,32 @@ window.addEventListener("keydown", (e) => {
     }
   });
 
-  //this increses the score of the player
-  function scoreUp() {
+  //TODO: this increses the score of the player
+  function scoreUp(d = playgroundSize) {
 
-    ctx.save()
-    ctx.restore()
+    let a = Math.ceil(Math.random()*d)
+    let b = Math.ceil(Math.random()*d)
+
+    //adds food
+    bgctx.fillStyle = "blue";
+  bgctx.fillRect(a, b, w/4, w/4);
+
+  setInterval (() => {
+    if (Math.abs(x-a) <= w && Math.abs(y-b) <= w) {
+        console.log("Intersected!");
+    }
+
+
+    // console.log("food: ", a,b);
+    // console.log("snake", x, y);
+}, 1000)
 
 
   }
   
 startNewGame();
+scoreUp()
+
+
+
 
