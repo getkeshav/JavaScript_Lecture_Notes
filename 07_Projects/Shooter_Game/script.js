@@ -3,45 +3,41 @@ const player_size = 20; //size of the players
 
 const player1 = {
   color: "red",
-  time_period: 200,
-  score: 0,
-  speed: (player_size / this.time_period) * 1000,
+  time_period: 150,
+  score: 100,
   movement: undefined,
   X: 0,
   Y: arena_size / 2,
-  bullet_color: "yellow",
+  bullet_color: "#590707",
 };
 
 const player2 = {
   color: "blue",
-  time_period: 200,
-  score: 0,
-  speed: (player_size / this.time_period) * 1000,
+  time_period: 150,
+  score: 100,
   movement: undefined,
   X: arena_size - player_size,
   Y: arena_size / 2,
-  bullet_color: "pink",
+  bullet_color: "#361d75",
 };
 
 //General
 const canvas = document.getElementById("gameArea");
 const bgctx = canvas.getContext("2d");
-const canvasColor = "grey";
+const canvasColor = "#59f06d";
 const foodColor = "#ff3131";
 
 //For Player 1
 const ctx1 = document.getElementById("player1").getContext("2d");
 const player1_score_element = document.getElementById("player1_score");
-const player1_speed_element = document.getElementById("player1_speed");
-player1_speed_element.innerText = Math.floor(player1.speed);
+player1_score_element.innerText = player1.score;
 ctx1.fillStyle = player1.color;
 ctx1.fillRect(0, arena_size / 2, player_size, player_size);
 
 //For Player 2
 const ctx2 = document.getElementById("player2").getContext("2d");
 const player2_score_element = document.getElementById("player2_score");
-const player2_speed_element = document.getElementById("player2_speed");
-player2_speed_element.innerText = Math.floor(player2.speed);
+player2_score_element.innerText = player2.score;
 ctx2.fillStyle = player2.color;
 ctx2.fillRect(
   arena_size - player_size,
@@ -302,13 +298,13 @@ function hit_detection(p, q, player_number) {
   if (
     player_number == 1 &&
     Math.abs(p - player2.X) <= 8 &&
-    Math.abs(player2.Y - q)
+    Math.abs(player2.Y - q) <= 8
   )
     return true;
   else if (
     player_number == 2 &&
     Math.abs(p - player1.X) <= 8 &&
-    Math.abs(player1.Y - q)
+    Math.abs(player1.Y - q) <= 8
   )
     return true;
 }
