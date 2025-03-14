@@ -295,7 +295,7 @@ function add_blood(x, y, d = player_size) {
 window.addEventListener("keydown", (e) => {
   e.preventDefault();
 
-  switch (e.key) {
+  switch (e.code) {
     case "ArrowLeft":
       clearInterval(player2.movement); //removes the last setInterval (movement) of the target and initiates a new one
       player2.movement = setInterval(move_xN, player2.time_period, 2);
@@ -319,38 +319,33 @@ window.addEventListener("keydown", (e) => {
 
       break;
 
-    case "A":
-    case "a":
+    case "KeyA":
       clearInterval(player1.movement);
       player1.movement = setInterval(move_xN, player1.time_period, 1);
       break;
 
-    case "D":
-    case "d":
+    case "KeyD":
       clearInterval(player1.movement);
       player1.movement = setInterval(move_xP, player1.time_period, 1);
 
       break;
 
-    case "W":
-    case "w":
+    case "KeyW":
       clearInterval(player1.movement);
       player1.movement = setInterval(move_yP, player1.time_period, 1);
       break;
 
-    case "S":
-    case "s":
+    case "KeyS":
       clearInterval(player1.movement);
       player1.movement = setInterval(move_yN, player1.time_period, 1);
       break;
 
     //for shooting by player 1
-    case "e":
-    case "E":
+    case "KeyE":
       shoot1(player1.X + player_size, player1.Y + player_size / 2.5);
       break;
 
-    case "0":
+    case "ShiftRight":
       shoot2(player2.X - player_size, player2.Y + player_size / 2.5);
       break;
   }
