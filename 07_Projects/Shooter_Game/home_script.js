@@ -49,7 +49,7 @@ function randomIdgenerator() {
 }
 
 async function newLetters() {
-  let randomTextCollection = await fetch("extraTxt.txt");
+  let randomTextCollection = await fetch("assets/extraTxt.txt");
   randomTextCollection = await randomTextCollection.text();
   arr = await randomTextCollection.split("\n");
   randomIdgenerator();

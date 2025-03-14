@@ -4,9 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shooter Game</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="game_style.css" />
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
   </head>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0P29Z62S3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0P29Z62S3');
+</script>
+
   <body>
     <div class="canvas">
       <canvas id="gameArea" height="500" width="500"></canvas>
@@ -26,6 +37,6 @@
 
     <p id="timeLeft"></p>
 
-    <script src="script.js"></script>
+    <script src="game_script.js"></script>
   </body>
 </html>
