@@ -1,23 +1,18 @@
-const arena_size = 500; //size of the arena (make it equal to canvas size from the HTML)
-const player_size = 20; //size of the player (height and width)
-let time_left = 60; //Total time duration of each game
+//non-auto movement
 
-const target_hit_score = 20; //Score when hit a target (this gets added)
-const damage_score = 10; //Score when got hit by the bullet (this gets subtracted)
-const shoot_score = 1; //Score deducted for each bullet used
+const arena_size = 500; //size of the arena (canvas)
+const player_size = 20; //size of the players
+let time_left = 60;
 
-//All properties of player 1
 const player1 = {
   color: "#39FF14",
-  time_period: 150, //Time (in ms) to move 1 unit
+  time_period: 150,
   score: 100,
-  X: 0, //X-coordinate of the player 1
-  Y: arena_size / 2, //Y-coordinate of the player 1
+  X: 0,
+  Y: arena_size / 2,
   bullet_color: "#FFD700",
-  movement: null, //keeps the refernce of the setIntervals used for moving in any direction
 };
 
-//All properties of player 2
 const player2 = {
   color: "#31A2FF",
   time_period: 150,
@@ -25,14 +20,13 @@ const player2 = {
   X: arena_size - player_size,
   Y: arena_size / 2,
   bullet_color: "#FF00FF",
-  movement: null,
 };
 
 //General
 const time_left_elem = document.getElementById("timeLeft");
 const canvas = document.getElementById("gameArea");
 const bgctx = canvas.getContext("2d");
-const canvasColor = "#111111"; //Colour of the canvas (arena)
+const canvasColor = "#111111";
 
 //For Player 1
 const ctx1 = document.getElementById("player1").getContext("2d");
@@ -42,7 +36,7 @@ const player1_score_element = document.getElementById("player1_score");
 const ctx2 = document.getElementById("player2").getContext("2d");
 const player2_score_element = document.getElementById("player2_score");
 
-//creates the arena at the start of the game
+//creates the playground (canvas)
 function startNewGame(d = arena_size) {
   if (!canvas.getContext) {
     alert("Canvas not supported in your browser!");
@@ -50,23 +44,21 @@ function startNewGame(d = arena_size) {
   }
 
   bgctx.strokeStyle = "white";
-
-  //To draw the canvas box
   bgctx.fillStyle = canvasColor;
-  bgctx.beginPath();
+  bgctx.beginPath(); //starts a new shape path
+  bgctx.moveTo(0, 0); //goes to an initial point
+  bgctx.lineTo(d, 0); //moves to another point for line
   bgctx.lineTo(d, d);
   bgctx.lineTo(0, d);
   bgctx.lineTo(0, 0);
   bgctx.fill();
 
-  //To draw the boundary at the middle
   bgctx.moveTo(d / 2, 0);
   bgctx.lineTo(d / 2, d);
   bgctx.stroke();
 
   time_left_elem.innerText = time_left;
 
-  //Add initial player details on the page
   player1_score_element.innerText = player1.score;
   ctx1.fillStyle = player1.color;
   ctx1.fillRect(0, d / 2, player_size, player_size);
@@ -75,7 +67,6 @@ function startNewGame(d = arena_size) {
   ctx2.fillStyle = player2.color;
   ctx2.fillRect(d - player_size, d / 2, player_size, player_size);
 }
-//Used to redraw the bgctx (background canvas)
 function redraw_arena(d = arena_size) {
   bgctx.clearRect(0, 0, d, d);
 
@@ -94,12 +85,10 @@ function redraw_arena(d = arena_size) {
   bgctx.lineTo(d / 2, d);
   bgctx.stroke();
 }
-//Logic for player 1 shooting bullet
+//shoots the bullet in positive x direction
 function shoot1(p, q) {
-  player1.score -= shoot_score; //removes a score for shooting bullet
+  player1.score -= 2;
   player1_score_element.innerText = player1.score;
-
-  //enables the bullet to keep moving continuosly
   const gun_shoot = setInterval(() => {
     p += player_size / 2.5;
     ctx1.clearRect(
@@ -111,27 +100,26 @@ function shoot1(p, q) {
     ctx1.fillStyle = player1.bullet_color;
     ctx1.fillRect(p, q, player_size / 2.5, player_size / 2.5);
 
-    //This checks if the bullet hit the target
     if (hit_detection(p, q, 1)) {
-      player1.score += target_hit_score;
+      player1.score += 10;
       player1_score_element.innerText = player1.score;
-      player2.score -= damage_score;
+      player2.score -= 5;
       player2_score_element.innerText = player2.score;
-      ctx1.clearRect(p, q, player_size / 2.5, player_size / 2.5); //removes the bullet, once hit the target
-      add_blood(player2.X, player2.Y); //add blood effect to player 2
-      clearInterval(gun_shoot); //removes the bullet animation (since already hit)
+      console.log("Player 1 hit Player 2!");
+      ctx1.clearRect(p, q, player_size / 2.5, player_size / 2.5);
+      add_blood(player2.X, player2.Y);
+      clearInterval(gun_shoot);
+
       return;
     }
 
-    //Checks if bullet left the arena (boundary)
     if (p >= arena_size) {
       clearInterval(gun_shoot);
     }
   }, player1.time_period / 4);
 }
-//Logic for player 2 shooting bullet
 function shoot2(p, q) {
-  player2.score -= shoot_score;
+  player2.score -= 2;
   player2_score_element.innerText = player2.score;
   const gun_shoot2 = setInterval(() => {
     p -= player_size / 2.5;
@@ -145,10 +133,11 @@ function shoot2(p, q) {
     ctx2.fillRect(p, q, player_size / 2.5, player_size / 2.5);
 
     if (hit_detection(p, q, 2)) {
-      player2.score += target_hit_score;
+      player2.score += 10;
       player2_score_element.innerText = player2.score;
-      player1.score -= damage_score;
+      player1.score -= 5;
       player1_score_element.innerText = player1.score;
+      console.log("Player 2 hit Player 1!");
       ctx2.clearRect(p, q, player_size / 2.5, player_size / 2.5);
 
       add_blood(player1.X, player1.Y);
@@ -158,12 +147,11 @@ function shoot2(p, q) {
 
     if (p < -player_size / 2.5) {
       clearInterval(gun_shoot2);
+      console.log("Cleared shoot 2!");
     }
   }, player1.time_period / 4);
 }
 
-//To move a unit distance in the positive x direction (right)
-//t is to track the player. If t = 1, then player 1 need to move ton right else player 2
 function move_xP(t) {
   if (t == 1 && player1.X + player_size <= arena_size / 2 - player_size) {
     player1.X += player_size; // Update position first
@@ -187,6 +175,7 @@ function move_xP(t) {
     ctx2.fillRect(player2.X, player2.Y, player_size, player_size);
   }
 }
+
 function move_xN(t) {
   if (t == 1 && player1.X - player_size >= 0) {
     player1.X -= player_size;
@@ -210,6 +199,7 @@ function move_xN(t) {
     ctx2.fillRect(player2.X, player2.Y, player_size, player_size);
   }
 }
+
 function move_yP(t) {
   if (t == 1 && player1.Y - player_size >= 0) {
     player1.Y -= player_size;
@@ -233,6 +223,7 @@ function move_yP(t) {
     ctx2.fillRect(player2.X, player2.Y, player_size, player_size);
   }
 }
+
 function move_yN(t) {
   if (t == 1 && player1.Y + player_size <= arena_size - player_size) {
     player1.Y += player_size;
@@ -256,8 +247,6 @@ function move_yN(t) {
     ctx2.fillRect(player2.X, player2.Y, player_size, player_size);
   }
 }
-
-//Used to detect if the bullet actually hit other player. Taken care by approximations
 function hit_detection(p, q, player_number) {
   if (
     player_number == 1 &&
@@ -273,17 +262,15 @@ function hit_detection(p, q, player_number) {
     return true;
 }
 
-//Adds the blood effect around the target that got hit
+//Adds the hit effects
 function add_blood(x, y, d = player_size) {
   //(x, y) -> Player's coordinate
 
-  //Adds the blood around the player
   bgctx.beginPath();
   bgctx.arc(x + d / 2, y + d / 2, d, 0, 2 * Math.PI);
   bgctx.fillStyle = "#FF3131";
   bgctx.fill();
 
-  //Removes the blood after few ms
   setTimeout(() => {
     redraw_arena();
   }, 50);
@@ -295,54 +282,42 @@ window.addEventListener("keydown", (e) => {
 
   switch (e.key) {
     case "ArrowLeft":
-      clearInterval(player2.movement); //removes the last setInterval (movement) of the target and initiates a new one
-      player2.movement = setInterval(move_xN, player2.time_period, 2);
+      move_xN(2);
       break;
 
     case "ArrowRight":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_xP, player2.time_period, 2);
-
+      move_xP(2);
       break;
 
     case "ArrowUp":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_yP, player2.time_period, 2);
-
+      move_yP(2);
       break;
 
     case "ArrowDown":
-      clearInterval(player2.movement);
-      player2.movement = setInterval(move_yN, player2.time_period, 2);
-
+      move_yN(2);
       break;
 
     case "A":
     case "a":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_xN, player1.time_period, 1);
+      move_xN(1);
       break;
 
     case "D":
     case "d":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_xP, player1.time_period, 1);
-
+      move_xP(1);
       break;
 
     case "W":
     case "w":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_yP, player1.time_period, 1);
+      move_yP(1);
       break;
 
     case "S":
     case "s":
-      clearInterval(player1.movement);
-      player1.movement = setInterval(move_yN, player1.time_period, 1);
+      move_yN(1);
       break;
 
-    //for shooting by player 1
+    //for player 1 shoot1
     case "e":
     case "E":
       shoot1(player1.X + player_size, player1.Y + player_size / 2.5);
@@ -354,7 +329,6 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-//Keeps track of the timer and alerts after timer hits 0
 const check_winner = setInterval(() => {
   time_left--;
   time_left_elem.innerText = time_left;
