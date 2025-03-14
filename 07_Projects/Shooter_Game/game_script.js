@@ -345,7 +345,7 @@ window.addEventListener("keydown", (e) => {
       shoot1(player1.X + player_size, player1.Y + player_size / 2.5);
       break;
 
-    case "ShiftRight":
+    case "Slash":
       shoot2(player2.X - player_size, player2.Y + player_size / 2.5);
       break;
   }
@@ -357,10 +357,17 @@ const check_winner = setInterval(() => {
   time_left_elem.innerText = time_left;
   if (time_left == -1) {
     clearInterval(check_winner);
-    if (player1.score > player2.score) alert("Player 1 won!");
-    else if (player1.score < player2.score) alert("Player 2 won!");
-    else {
+    if (player1.score > player2.score) {
+      time_left_elem.innerHTML =
+        'Player 1 won! <a href = "game.html" style = "color : red">Play again!</a>';
+    } else if (player1.score < player2.score) {
+      alert("Player 2 won!");
+      time_left_elem.innerHTML =
+        'Player 2 won! <a href = "game.html" style = "color : red">Play again!</a>';
+    } else {
       alert("Draw!");
+      time_left_elem.innerHTML =
+        'Draw! <a href = "game.html" style = "color : red">Play again!</a>';
     }
   }
 }, 1000);

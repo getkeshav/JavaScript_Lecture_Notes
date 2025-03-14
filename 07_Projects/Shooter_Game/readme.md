@@ -8,7 +8,7 @@ A simple **2-player shooter game** built using **HTML, CSS, and Vanilla JavaScri
   - Shoot: `E`
 - **Player 2 Controls:**
   - Move: `Arrow Keys`
-  - Shoot: `Right Shift`
+  - Shoot: `/`
 
 ### 🏆 Scoring System
 - **+30 points** when you hit the opponent.
