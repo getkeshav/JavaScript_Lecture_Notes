@@ -2,7 +2,7 @@ const arena_size = 500; //size of the arena (make it equal to canvas size from t
 const player_size = 20; //size of the player (height and width)
 let time_left = 60; //Total time duration of each game
 
-const target_hit_score = 20; //Score when hit a target (this gets added)
+const target_hit_score = 30; //Score when hit a target (this gets added)
 const damage_score = 10; //Score when got hit by the bullet (this gets subtracted)
 const shoot_score = 1; //Score deducted for each bullet used
 
@@ -10,7 +10,7 @@ const shoot_score = 1; //Score deducted for each bullet used
 const player1 = {
   color: "#39FF14",
   time_period: 150, //Time (in ms) to move 1 unit
-  score: 100,
+  score: 0,
   X: 0, //X-coordinate of the player 1
   Y: arena_size / 2, //Y-coordinate of the player 1
   bullet_color: "#FFD700",
@@ -21,7 +21,7 @@ const player1 = {
 const player2 = {
   color: "#31A2FF",
   time_period: 150,
-  score: 100,
+  score: 0,
   X: arena_size - player_size,
   Y: arena_size / 2,
   bullet_color: "#FF00FF",
@@ -54,6 +54,8 @@ function startNewGame(d = arena_size) {
   //To draw the canvas box
   bgctx.fillStyle = canvasColor;
   bgctx.beginPath();
+  bgctx.moveTo(0, 0);
+  bgctx.lineTo(d, 0);
   bgctx.lineTo(d, d);
   bgctx.lineTo(0, d);
   bgctx.lineTo(0, 0);
