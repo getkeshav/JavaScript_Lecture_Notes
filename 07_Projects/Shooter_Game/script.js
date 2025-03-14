@@ -328,7 +328,6 @@ window.addEventListener("keydown", (e) => {
 });
 
 const check_winner = setInterval(() => {
-  console.log(time_left);
   time_left--;
   time_left_elem.innerText = time_left;
   if (time_left == -1) {
