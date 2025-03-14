@@ -1,6 +1,6 @@
 /* Dark themed background and overall styling */
 body {
-    background-color: #121212;
+    background-color: #0D0D0D;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
@@ -42,6 +42,7 @@ body {
   }
   #timeLeft {
     position: absolute;
+    font-size: large;
     top: 20px;
   }
   /* Basic styling for headings and paragraphs */

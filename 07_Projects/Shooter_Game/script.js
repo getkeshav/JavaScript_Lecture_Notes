@@ -3,29 +3,28 @@ const player_size = 20; //size of the players
 let time_left = 60;
 
 const player1 = {
-  color: "red",
+  color: "#39FF14",
   time_period: 150,
   score: 100,
   X: 0,
   Y: arena_size / 2,
-  bullet_color: "#590707",
+  bullet_color: "#FFD700",
 };
 
 const player2 = {
-  color: "blue",
+  color: "#31A2FF",
   time_period: 150,
   score: 100,
   X: arena_size - player_size,
   Y: arena_size / 2,
-  bullet_color: "#361d75",
+  bullet_color: "#FF00FF",
 };
 
 //General
 const time_left_elem = document.getElementById("timeLeft");
 const canvas = document.getElementById("gameArea");
 const bgctx = canvas.getContext("2d");
-const canvasColor = "#59f06d";
-const foodColor = "#ff3131";
+const canvasColor = "#111111";
 
 //For Player 1
 const ctx1 = document.getElementById("player1").getContext("2d");
@@ -41,6 +40,8 @@ function startNewGame(d = arena_size) {
     alert("Canvas not supported in your browser!");
     return;
   }
+
+  bgctx.strokeStyle = "white";
   bgctx.fillStyle = canvasColor;
   bgctx.beginPath(); //starts a new shape path
   bgctx.moveTo(0, 0); //goes to an initial point
@@ -50,24 +51,37 @@ function startNewGame(d = arena_size) {
   bgctx.lineTo(0, 0);
   bgctx.fill();
 
-  bgctx.moveTo(arena_size / 2, 0);
-  bgctx.lineTo(arena_size / 2, arena_size);
+  bgctx.moveTo(d / 2, 0);
+  bgctx.lineTo(d / 2, d);
   bgctx.stroke();
 
-  time_left_elem.innerText = time_left
+  time_left_elem.innerText = time_left;
 
   player1_score_element.innerText = player1.score;
   ctx1.fillStyle = player1.color;
-  ctx1.fillRect(0, arena_size / 2, player_size, player_size);
+  ctx1.fillRect(0, d / 2, player_size, player_size);
 
   player2_score_element.innerText = player2.score;
   ctx2.fillStyle = player2.color;
-  ctx2.fillRect(
-    arena_size - player_size,
-    arena_size / 2,
-    player_size,
-    player_size
-  );
+  ctx2.fillRect(d - player_size, d / 2, player_size, player_size);
+}
+function redraw_arena(d = arena_size) {
+  bgctx.clearRect(0, 0, d, d);
+
+  bgctx.strokeStyle = "white";
+
+  bgctx.fillStyle = canvasColor;
+  bgctx.beginPath(); //starts a new shape path
+  bgctx.moveTo(0, 0); //goes to an initial point
+  bgctx.lineTo(d, 0); //moves to another point for line
+  bgctx.lineTo(d, d);
+  bgctx.lineTo(0, d);
+  bgctx.lineTo(0, 0);
+  bgctx.fill();
+
+  bgctx.moveTo(d / 2, 0);
+  bgctx.lineTo(d / 2, d);
+  bgctx.stroke();
 }
 //shoots the bullet in positive x direction
 function shoot1(p, q) {
@@ -91,7 +105,9 @@ function shoot1(p, q) {
       player2_score_element.innerText = player2.score;
       console.log("Player 1 hit Player 2!");
       ctx1.clearRect(p, q, player_size / 2.5, player_size / 2.5);
+      add_blood(player2.X, player2.Y);
       clearInterval(gun_shoot);
+
       return;
     }
 
@@ -121,6 +137,8 @@ function shoot2(p, q) {
       player1_score_element.innerText = player1.score;
       console.log("Player 2 hit Player 1!");
       ctx2.clearRect(p, q, player_size / 2.5, player_size / 2.5);
+
+      add_blood(player1.X, player1.Y);
       clearInterval(gun_shoot2);
       return;
     }
@@ -240,6 +258,20 @@ function hit_detection(p, q, player_number) {
     Math.abs(player1.Y - q) <= 8
   )
     return true;
+}
+
+//Adds the hit effects
+function add_blood(x, y, d = player_size) {
+  //(x, y) -> Player's coordinate
+
+  bgctx.beginPath();
+  bgctx.arc(x + d / 2, y + d / 2, d, 0, 2 * Math.PI);
+  bgctx.fillStyle = "#FF3131";
+  bgctx.fill();
+
+  setTimeout(() => {
+    redraw_arena();
+  }, 50);
 }
 
 //Adding controls to the game
