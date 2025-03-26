@@ -24,6 +24,7 @@ function demo() {
 }
 demo();
 Behavior: When a function is called, a new stack frame is created. When the function returns, that frame is removed.
+
 2. Heap Memory (Reference Data Types)
 Stores: Objects, arrays, and functions (anything non-primitive).
 Structure: Unstructured, large memory space.

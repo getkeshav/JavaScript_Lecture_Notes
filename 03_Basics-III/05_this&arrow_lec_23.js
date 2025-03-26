@@ -137,3 +137,9 @@ user2.greet() //My name is W Kumar and age is 18
     console.log(example());
 
 }
+
+//! Difference in 'this' keyword in regular function and arrow functions
+
+// In regular functions, "this" refers to the object that calls the function (runtime binding). 
+
+//In arrow functions, this is lexically inherited from the surrounding scope, not the function itself. It maintains the this value from where the arrow function is defined.

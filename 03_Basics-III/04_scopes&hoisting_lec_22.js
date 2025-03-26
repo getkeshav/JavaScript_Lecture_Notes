@@ -52,7 +52,7 @@ console.log(username) //gives error (since username ke scope se bahar aa gye)
     addTwo(5) //does nothing
     console.log(addTwo(5)) //gives 7
 
-    //Note: Funnction expressions are not hoisted!! (i.e. they can only be used below their definition)
+    //Note: Function expressions are not hoisted!! (i.e. they can only be used below their definition)
 
     //Note: Normal functions are hoisted (i.e. they can be accessed even above their definition)
 

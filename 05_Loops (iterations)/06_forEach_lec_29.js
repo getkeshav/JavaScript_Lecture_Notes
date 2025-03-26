@@ -3,7 +3,7 @@
 
   const arr = ["Pranaw, 26, true, undefined"];
 
-  //? forEach takes a callback function (function without a name) as a parameter
+  //? forEach takes a callback function as a parameter
 
   //! Passing a normal callback function
   arr.forEach(function (val) {

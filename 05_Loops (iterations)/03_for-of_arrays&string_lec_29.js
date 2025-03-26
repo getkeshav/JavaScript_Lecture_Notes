@@ -1,6 +1,8 @@
 {
   //* for of -- used for arrays, strings, maps, sets (gives values directly)
 
+  //for-of used with iterables
+
   //* Using for-of on array
 
   const arr = ["Pranaw", 18, true, "Kumar", 2006];

@@ -36,3 +36,5 @@ console.log(typeof (x))
 
 console.log(typeof null) //Note: gives object as output; a drawback in the JS language
 console.log(typeof undefined) //Note: gives undefined as output; undefined is a type of itself
+
+console.log(typeof NaN); //number

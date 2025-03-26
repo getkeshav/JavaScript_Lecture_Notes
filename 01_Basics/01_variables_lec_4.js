@@ -20,4 +20,3 @@ console.table([accountId, accountCity, accountName, accountPass]) //Used to disp
 
 let x;
 console.log("Value of x:", x);
-

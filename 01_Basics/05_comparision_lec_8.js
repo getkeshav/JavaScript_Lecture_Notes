@@ -10,4 +10,4 @@ console.log(5 == "5") //true. same reason
 //* Strict check (===) - checks both data-type and value (no conversion here)
 
 console.log("2" === 2) //false- since type is not same
-console.log("2" > 1) //false. since type is not same
+console.log("2" > 1) //true

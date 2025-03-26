@@ -138,7 +138,7 @@ It returns this new string without modifying the original s2.
     
     //* Difference between .slice() and .substring()
 
-    .splice() can take negative indexes as well, while if .subtring() encounters a negative treats it as 0. (therefore, negative doesn't work in substring)
+    .slice() can take negative indexes as well, while if .subtring() encounters a negative treats it as 0. (therefore, negative doesn't work in substring)
 
 
     0, -6 : 'P' 
