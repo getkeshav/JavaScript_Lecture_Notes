@@ -53,5 +53,5 @@ console.log(typeof undefined) //Note: gives undefined as output; undefined is a 
 console.log(typeof NaN); // number
 // NaN stands for "Not-a-Number", but ironically, its type is number. NaN is a special numeric value that represents an invalid number operation.
 console.log(typeof 5); // number
-let x = 0/0;
-console.log(x) // NaN
+let y = 0/0;
+console.log(y) // NaN
